@@ -23,7 +23,7 @@ export function Navbar() {
             MidiKeyboard
           </NavLink>
         </li>
-        <li>
+        {/* <li>
           <NavLink
             // activeClassName="selected"
             className="nav-link"
@@ -31,7 +31,7 @@ export function Navbar() {
           >
             DrumKit
           </NavLink>
-        </li>
+        </li> */}
         <li>
           <NavLink
             // activeClassName="selected"
