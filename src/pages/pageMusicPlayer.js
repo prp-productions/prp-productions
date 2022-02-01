@@ -1,4 +1,4 @@
-const pageMusicPlayer = () => {
+export const PageMusicPlayer = () => {
   return (
     <div>
       <h1>Musicplayer</h1>
@@ -6,4 +6,3 @@ const pageMusicPlayer = () => {
   );
 };
 
-export default pageMusicPlayer;
