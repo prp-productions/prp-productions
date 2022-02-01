@@ -1,10 +1,10 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Navbar } from "./components/Navbar.js";
-import { Home } from "./components/Home.js";
-import { MidiKeyboard } from "./components/MidiKeyboard.js";
-import { DrumKit } from "./components/DrumKit.js";
-import { MusicPlayer } from "./components/MusicPlayer.js";
+import { PageHome } from "./pages/PageHome";
+import { PageMidiKeyboard } from "./pages/PageMidiKeyboard";
+import { PageDrumKit } from "./pages/PageDrumKit";
+import { PageMusicPlayer } from "./pages/PageMusicPlayer";
 
 function App() {
   return (
@@ -12,13 +12,13 @@ function App() {
       <div className="App">
         <Navbar />
         <Routes>
-          <Route exact path="/" element={<Home />} />
+          <Route exact path="/" element={<PageHome />} />
 
-          <Route path="/midiKeyboard" element={<MidiKeyboard />} />
+          <Route path="/midiKeyboard" element={<PageMidiKeyboard />} />
 
-          {/* <Route path="/drumKit" element={<DrumKit />} /> */}
+          {/* <Route path="/drumKit" element={<PageDrumKit />} /> */}
 
-          <Route path="/musicPlayer" element={<MusicPlayer />} />
+          <Route path="/musicPlayer" element={<PageMusicPlayer />} />
         </Routes>
       </div>
     </Router>
