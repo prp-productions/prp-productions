@@ -2,7 +2,7 @@ import '../styles/midiKeyboard.css'
 
 const MusicPlayer = () => {
 	return (
-		<h1>Music Player</h1>
+		<h1>Component Music Player</h1>
 	)	
 }
 

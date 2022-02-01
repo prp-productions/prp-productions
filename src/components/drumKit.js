@@ -3,7 +3,7 @@ import "../styles/drumkit.css";
 
 const Drumkit = () => {
 	return (
-		<h1>Drumkit</h1>
+		<h1>Components Drumkit</h1>
 	)	
 }
 

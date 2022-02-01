@@ -2,7 +2,7 @@ import '../styles/midiKeyboard.css'
 
 const MidiKeyboard = () => {
 	return (
-		<h1>Midikeyboard</h1>
+		<h1>Component Midikeyboard</h1>
 	)
 }
 
