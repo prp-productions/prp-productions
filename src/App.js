@@ -1,10 +1,10 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import {Navbar} from "./components/Navbar.js";
-import {Home }from "./components/Home.js";
-import {MidiKeyboard} from "./components/MidiKeyboard.js";
-import {DrumKit} from "./components/DrumKit.js";
-import {MusicPlayer} from "./components/MusicPlayer.js";
+import { Navbar } from "./components/Navbar.js";
+import { Home } from "./components/Home.js";
+import { MidiKeyboard } from "./components/MidiKeyboard.js";
+import { DrumKit } from "./components/DrumKit.js";
+import { MusicPlayer } from "./components/MusicPlayer.js";
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
 
           <Route path="/midiKeyboard" element={<MidiKeyboard />} />
 
-          <Route path="/drumKit" element={<DrumKit />} />
+          {/* <Route path="/drumKit" element={<DrumKit />} /> */}
 
           <Route path="/musicPlayer" element={<MusicPlayer />} />
         </Routes>

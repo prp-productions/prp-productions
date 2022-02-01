@@ -1,0 +1,53 @@
+Todo / plan
+
+** src **
+pages Directory
+    = PageHome, X
+     PageDrumkit, 
+      -state variables =    
+         ** drums =( array of instrument objects/ ),
+         ** current track, 
+         ** drum tracks.
+     PageMidiKeyboard  x 
+        - state variables = 
+        **  keyboard(array of keys), 
+        **  current track, 
+        **  midiKeyboard tracks,  
+     PageMusicPlayer  - access to finished/saved tracks.  with App Context (keyboard tracks, drum tracks)
+        - convert track arrays to mp3 
+        - play drum tracks & midiKeyboard tracks.
+        - state variables =
+    
+
+components Directory   
+    = Piano (rename to keyboard?) + command bar (record, play)
+    = Nav
+
+
+classes  Directory
+    = MidiKeyboard (because has no representation outside of piano)   X
+    = AudioManager      X
+
+utils  Directory
+    = channelKeyMap
+    = general (formerly utils.js)
+
+
+styles directory
+    - Css/ Scss
+
+media directory
+    -sounds 
+        -clap.mp3, etc. 
+    -in progress tracks
+        Benutzer erstellt mp3 ... .prp files 
+    - finished tracks
+        mp3 
+    
+data directory?
+
+user Directory  
+    -shared tracks/projects/ etc
+
+
+
