@@ -3,26 +3,27 @@ import "./App.css";
 // import Navbar from "./components/navbar.js";
 
 function App() {
-//   return (
-//     <Router>
-//       <div className="App">
-//         <Navbar />
+  return (
+    <div >HI</div>
+    // <Router>
+    //   <div className="App">
+    //     <Navbar />
         
-//           <Route exact path="/" />
-//           <Home />
+    //       <Route exact path="/" />
+    //       <Home />
 
-//           <Route path="/midiKeyboard" />
-//           <MidiKeyboard />
+    //       <Route path="/midiKeyboard" />
+    //       <MidiKeyboard />
 
-//           <Route path="/drumKit" />
-//           <DrumKit />
+    //       <Route path="/drumKit" />
+    //       <DrumKit />
 
-//           <Route path="/musicPlayer" />
-//           <MusicPlayer />
+    //       <Route path="/musicPlayer" />
+    //       <MusicPlayer />
        
-//       </div>
-//     </Router>
-//   );
+    //   </div>
+    // </Router>
+  );
 }
 
 export default App;
