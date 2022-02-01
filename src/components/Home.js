@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "../styles/home.css";
 
-function Home() {
+export function Home() {
   return (
     <div className="home-component">
       <h2>
@@ -14,4 +14,3 @@ function Home() {
   );
 }
 
-export default Home;

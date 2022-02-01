@@ -1,28 +1,27 @@
 import "./App.css";
-// import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-// import Navbar from "./components/navbar.js";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {Navbar} from "./components/Navbar.js";
+import {Home }from "./components/Home.js";
+import {MidiKeyboard} from "./components/MidiKeyboard.js";
+import {DrumKit} from "./components/DrumKit.js";
+import {MusicPlayer} from "./components/MusicPlayer.js";
 
 function App() {
   return (
-    <div >HI</div>
-    // <Router>
-    //   <div className="App">
-    //     <Navbar />
-        
-    //       <Route exact path="/" />
-    //       <Home />
+    <Router>
+      <div className="App">
+        <Navbar />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
 
-    //       <Route path="/midiKeyboard" />
-    //       <MidiKeyboard />
+          <Route path="/midiKeyboard" element={<MidiKeyboard />} />
 
-    //       <Route path="/drumKit" />
-    //       <DrumKit />
+          <Route path="/drumKit" element={<DrumKit />} />
 
-    //       <Route path="/musicPlayer" />
-    //       <MusicPlayer />
-       
-    //   </div>
-    // </Router>
+          <Route path="/musicPlayer" element={<MusicPlayer />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
