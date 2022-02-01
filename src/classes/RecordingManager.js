@@ -1,4 +1,4 @@
-import { AudioManager } from "./audioManager.js";
+import { AudioManager } from "./AudioManager.js";
 
 const audioManager = new AudioManager();
 
