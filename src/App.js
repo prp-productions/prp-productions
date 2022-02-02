@@ -16,7 +16,7 @@ function App() {
 
           <Route path="/midiKeyboard" element={<PageMidiKeyboard />} />
 
-          {/* <Route path="/drumKit" element={<PageDrumKit />} /> */}
+          <Route path="/drumKit" element={<PageDrumKit />} />
 
           <Route path="/musicPlayer" element={<PageMusicPlayer />} />
         </Routes>
