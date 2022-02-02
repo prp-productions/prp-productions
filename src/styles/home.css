@@ -5,8 +5,8 @@
   align-items: center;
   width: 100%;
   min-height:100vh;
-  color:rgb(63, 63, 141);
-  background-color: #af6969;
+  color:var(--main-link);
+  background-color: var(--main-color);
   background-size : cover;
 }
 
@@ -15,6 +15,6 @@
     font-weight : bold; 
     max-width : 90%;
     margin: 0 0 30px 0;
-    text-shadow:1px 1px 2px rgb(63, 63, 141);
+    text-shadow:1px 1px 2px var(--main-link);
 
 }
