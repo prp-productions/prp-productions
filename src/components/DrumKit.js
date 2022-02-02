@@ -1,11 +1,11 @@
 import "../styles/drumKit.css";
-import { useHowl, Play } from "rehowl";
+import { Howl, Howler } from "howler";
 
 export const DrumKit = () => {
-  const drums = new useHowl({
+  const drums = new Howl({
     src: [
-      "../mediaDirectory/drumSounds/drums.webm",
-      "../mediaDirectory/drumSounds/drums.mp3",
+      "./mediaDirectory/drumSounds/drums.webm",
+      "./mediaDirectory/drumSounds/drums.mp3",
     ],
     sprite: {
       "CYCdh_AcouKick-14": [0, 625.8503401360545],
@@ -19,8 +19,7 @@ export const DrumKit = () => {
 
   //drums.play();
 
-  const drumkit = document.querySelector(".drumkit");
-  console.log(drumkit);
+  //const drumkit = document.querySelector(".drumkit");
 
   function playDrum(event) {
     if (event.target.classList.contains("pad")) {
@@ -100,9 +99,9 @@ export const DrumKit = () => {
   //     drums.play(soundToPlay);
   //   });
 
-  function handleDrumClick() {
-    let soundToPlay = this.target.dataset.sound;
+  function handleDrumClick(soundToPlay) {
     drums.play(soundToPlay);
+    console.log(soundToPlay, drums);
   }
 
   //   return <div className="drumKit">drumKit</div>;
@@ -110,8 +109,8 @@ export const DrumKit = () => {
     <div className="drumkit">
       <div
         className="pad clap"
-        data-sound="CYCdh_LudRimC-07"
-        onClick={handleDrumClick}
+        //data-sound="CYCdh_LudRimC-07"
+        onClick={() => handleDrumClick("CYCdh_LudRimC-07")}
       >
         <img src="images/drumKitIcons/clap.png" alt="clap" />
       </div>
