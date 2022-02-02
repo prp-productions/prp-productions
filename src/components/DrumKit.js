@@ -104,20 +104,20 @@ export const DrumKit = () => {
     console.log(soundToPlay, drums);
   }
 
+  //   function handleKeyPress(e.key, soundToPlay) {
+
   //   return <div className="drumKit">drumKit</div>;
   return (
     <div className="drumkit">
       <div
         className="pad clap"
-        //data-sound="CYCdh_LudRimC-07"
         onClick={() => handleDrumClick("CYCdh_LudRimC-07")}
       >
         <img src="images/drumKitIcons/clap.png" alt="clap" />
       </div>
       <div
         className="pad clHat"
-        data-sound="CYCdh_Sab_ClHat-06"
-        onClick={handleDrumClick}
+        onClick={() => handleDrumClick("CYCdh_Sab_ClHat-06")}
       >
         <img
           src="images/drumKitIcons/closed_high_hat.png"
@@ -126,30 +126,26 @@ export const DrumKit = () => {
       </div>
       <div
         className="pad crash"
-        data-sound="CYCdh_Crash-01"
-        onClick={handleDrumClick}
+        onClick={() => handleDrumClick("CYCdh_Crash-01")}
       >
         <img src="images/drumKitIcons/crash.png" alt="crash" />
       </div>
 
       <div
         className="pad kick"
-        data-sound="CYCdh_AcouKick-14"
-        onClick={handleDrumClick}
+        onClick={() => handleDrumClick("CYCdh_AcouKick-14")}
       >
         <img src="images/drumKitIcons/kick.png" alt="kick" />
       </div>
       <div
         className="pad opHat"
-        data-sound="KHats Open-07"
-        onClick={handleDrumClick}
+        onClick={() => handleDrumClick("KHats Open-07")}
       >
         <img src="images/drumKitIcons/open_high_hat.png" alt="open high hat" />
       </div>
       <div
         className="pad snare"
-        data-sound="CYCdh_Kurz02-Snr02"
-        onClick={handleDrumClick}
+        onClick={() => handleDrumClick("CYCdh_Kurz02-Snr02")}
       >
         <img src="images/drumKitIcons/snare.png" alt="clap" />
       </div>
