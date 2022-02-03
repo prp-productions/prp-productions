@@ -1,4 +1,4 @@
-import * as converter from "./channelKeyMap.js";
+import * as converter from "./ChannelKeyMap.js";
 
 export const getNoteFromNoteName = (noteName) => {
   const entries = Object.entries(converter.channelKeyMap);

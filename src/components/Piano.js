@@ -1,13 +1,17 @@
-import * as utils from "./utils";
+import * as utils from "../utils/General";
 import { AudioManager } from "../classes/AudioManager.js";
 import { getNoteFromNoteName } from "../utils/ChannelKeyMap.js";
-import { RecordingManager } from "./RecordingManager";
+import React from "react";
 
-const audioManager = newAudioManager();
+import "../styles/piano.css";
+//import { RecordingManager } from "./RecordingManager";
 
-class Piano extends React.Component {
+const audioManager = new AudioManager();
+
+export class Piano extends React.Component {
   // TODO: create display methods
   constructor(range = ["C2", "C7"]) {
+    super();
     this.naturalNotesFlats = ["D", "E", "G", "A", "B"];
     this.naturalNotesSharps = ["C", "D", "F", "G", "A"];
     this.naturalNotes = ["C", "D", "E", "F", "G", "A", "B"];
@@ -19,41 +23,42 @@ class Piano extends React.Component {
     this.pianoElem = document.querySelector("#piano");
     this.svg = this.createMainSvg();
 
-    this.recordingManager = new RecordingManager();
+    //this.recordingManager = new RecordingManager();
 
     this.addWhiteKeys();
     this.addBlackKeys();
 
     this.pianoElem.appendChild(this.svg);
 
-    this.keydown();
+    //this.keydown();
 
     this.ts1 = 0;
     this.ts2 = 0;
   }
-  keydown() {
-    document.addEventListener("keydown", (e) => {
-      document.addEventListener("keydown", (e) => {
-        if (!e.repeat) console.log(`Key "${e.key}" pressed  [event: keydown]`);
-        else console.log(`Key "${e.key}" repeating  [event: keydown]`);
-      });
-      document.addEventListener("beforeinput", (e) => {
-        console.log.log(
-          `Key "${e.data}" about to be input  [event: beforeinput]`
-        );
-      });
-      document.addEventListener("input", (e) => {
-        console.log(`Key "${e.data}" input  [event: input]`);
-      });
-      document.addEventListener("keyup", (e) => {
-        console.log(`Key "${e.key}" released  [event: keyup]`);
-      });
-      switch (e.key) {
-        case "c":
-          console.log("C");
-      }
-    });
-  }
+
+  // keydown() {
+  //   document.addEventListener("keydown", (e) => {
+  //     document.addEventListener("keydown", (e) => {
+  //       if (!e.repeat) console.log(`Key "${e.key}" pressed  [event: keydown]`);
+  //       else console.log(`Key "${e.key}" repeating  [event: keydown]`);
+  //     });
+  //     document.addEventListener("beforeinput", (e) => {
+  //       console.log.log(
+  //         `Key "${e.data}" about to be input  [event: beforeinput]`
+  //       );
+  //     });
+  //     document.addEventListener("input", (e) => {
+  //       console.log(`Key "${e.data}" input  [event: input]`);
+  //     });
+  //     document.addEventListener("keyup", (e) => {
+  //       console.log(`Key "${e.key}" released  [event: keyup]`);
+  //     });
+  //     switch (e.key) {
+  //       case "c":
+  //         console.log("C");
+  //     }
+  //   });
+  // }
 
   addWhiteKeys() {
     let whiteKeyPositionX = 0;
@@ -64,7 +69,7 @@ class Piano extends React.Component {
         width: this.whiteKeyWidth,
         height: this.pianoHeight,
       });
-
+      //TODO change eventListener
       whiteKey.addEventListener("click", (e) => {
         if (this.ts2 !== 0) {
           this.ts1 = this.ts2;
@@ -200,10 +205,14 @@ class Piano extends React.Component {
   }
 
   createOctave(octaveNumber) {
+    //! WTF is octaveWidth?
+    const octaveWidth = 100;
     const octave = utils.createSVGElement("g");
     octave.classList.add("octave");
+
     octave.setAttribute(
       "transform",
+
       `translate(${octaveNumber * octaveWidth}, 0)`
     );
     return octave;
@@ -283,6 +292,19 @@ class Piano extends React.Component {
         }
       });
     });
+  }
+  render() {
+    return (
+      <div className="main_piano_div">
+        <div>
+          {" "}
+          {this.createMainSvg()}
+          {this.addWhiteKeys}
+          {this.addBlackKeys}
+        </div>
+        <div> {this.displayNotes(notes)}</div>
+      </div>
+    );
   }
 }
 
