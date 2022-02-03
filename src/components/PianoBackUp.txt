@@ -1,5 +1,4 @@
 import React from "react";
-import * as utils from "../utils/General";
 import { AudioManager } from "../classes/AudioManager.js";
 import { getNoteFromNoteName } from "../utils/ChannelKeyMap.js";
 import "../styles/piano.css";
@@ -9,20 +8,12 @@ const audioManager = new AudioManager();
 
 export class Piano extends React.Component {
   // TODO: create display methods
-  constructor(range = ["C2", "C7"]) {
+  constructor(]) {
     super();
     this.naturalNotesFlats = ["D", "E", "G", "A", "B"];
     this.naturalNotesSharps = ["C", "D", "F", "G", "A"];
-    this.naturalNotes = ["C", "D", "E", "F", "G", "A", "B"];
-    this.whiteKeyWidth = 80;
-    this.pianoHeight = 400;
-    this.range = range;
-    this.allNaturalNotes = this.getAllNaturalNotes(this.range);
-    this.pianoWidth = this.allNaturalNotes.length * this.whiteKeyWidth;
+
     
-    this.pianoElem = document.querySelector("#piano");
-    this.svg = this.createMainSvg();
-    this.pianoElem.appendChild(this.svg);
 
     //this.recordingManager = new RecordingManager();
 
@@ -228,52 +219,8 @@ export class Piano extends React.Component {
     return key;
   }
 
-  getAllNaturalNotes([firstNote, lastNote]) {
-    // Assign octave number, notes and positions to variables
-    const firstNoteName = firstNote[0];
-    const firstOctaveNumber = parseInt(firstNote[1]);
-    const lastNoteName = lastNote[0];
-    const lastOctaveNumber = parseInt(lastNote[1]);
-    const firstNotePosition = this.naturalNotes.indexOf(firstNoteName);
-    const lastNotePosition = this.naturalNotes.indexOf(lastNoteName);
-    const notes = [];
+  
 
-    for (
-      let octaveNumber = firstOctaveNumber;
-      octaveNumber <= lastOctaveNumber;
-      octaveNumber++
-    ) {
-      // Handle first octave
-      if (octaveNumber === firstOctaveNumber) {
-        this.naturalNotes.slice(firstNotePosition).forEach((noteName) => {
-          notes.push(noteName + octaveNumber);
-        });
-
-        // Handle last octave
-      } else if (octaveNumber === lastOctaveNumber) {
-        this.naturalNotes.slice(0, lastNotePosition + 1).forEach((noteName) => {
-          notes.push(noteName + octaveNumber);
-        });
-      } else {
-        this.naturalNotes.forEach((noteName) => {
-          notes.push(noteName + octaveNumber);
-        });
-      }
-    }
-    return notes;
-  }
-
-  createMainSvg() {
-    const returnSvg = utils.createSVGElement("svg");
-    utils.setAttributes(returnSvg, {
-      width: "100%",
-      version: "1.1",
-      xmlns: "http://www.w3.org/2000/svg",
-      "xmlns:xlink": "http://www.w3.org/1999/xlink",
-      viewBox: `0 0 ${this.pianoWidth} ${this.pianoHeight}`,
-    });
-    return returnSvg;
-  }
 
   displayNotes(notes) {
     const pianoKeys = document.querySelectorAll(".key");
