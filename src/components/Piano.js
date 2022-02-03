@@ -36,7 +36,6 @@ export const Piano = () => {
     const firstNotePosition = naturalNotes.indexOf(firstNoteName);
     const lastNotePosition = naturalNotes.indexOf(lastNoteName);
     const notes = [];
-
     for (
       let octaveNumber = firstOctaveNumber;
       octaveNumber <= lastOctaveNumber;
@@ -73,10 +72,10 @@ export const Piano = () => {
       });
       //TODO change eventListener
       whiteKey.addEventListener("click", (e) => {
-        if (this.ts2 !== 0) {
-          this.ts1 = this.ts2;
+        if (ts2 !== 0) {
+          ts1 = ts2;
         }
-        this.ts2 = new Date().getTime();
+        ts2 = new Date().getTime();
 
         const noteName = e.target.getAttribute("data-note-name");
         console.log(noteName);
