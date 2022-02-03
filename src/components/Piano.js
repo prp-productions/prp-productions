@@ -1,5 +1,9 @@
 import { useRef, useEffect } from "react";
 import * as utils from "../utils/General";
+import { getNoteFromNoteName } from "../utils/ChannelKeyMap.js";
+import { AudioManager } from "../classes/AudioManager.js";
+
+const audioManager = new AudioManager();
 
 export const Piano = () => {
   let svg = null;
