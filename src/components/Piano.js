@@ -58,9 +58,76 @@ export const Piano = () => {
     return notes;
   }
 
+function addWhiteKeys() {
+    let whiteKeyPositionX = 0;
+    this.allNaturalNotes.forEach((noteName) => {
+      const whiteKeyTextGroup = utils.createSVGElement("g");
+      const whiteKey = this.createKey({
+        className: "white-key",
+        width: this.whiteKeyWidth,
+        height: this.pianoHeight,
+      });
+      //TODO change eventListener
+      whiteKey.addEventListener("click", (e) => {
+        if (this.ts2 !== 0) {
+          this.ts1 = this.ts2;
+        }
+        this.ts2 = new Date().getTime();
+
+        const noteName = e.target.getAttribute("data-note-name");
+        console.log(noteName);
+        const note = getNoteFromNoteName(noteName);
+        const velocity = 35;
+        for (let i = 0; i < 1; i++) {
+          audioManager.noteOn(note, velocity);
+        }
+
+        audioManager.noteOffWithKeyPress(note);
+        console.log("testing timestamp: ", this.ts1, this.ts2);
+        const duration = this.ts1 === 0 ? 0 : Math.abs(this.ts2 - this.ts1);
+        console.log("testing duration: ", duration);
+        const playDuration = 200;
+
+        const waitDuration = 0;
+        this.recordingManager.overwriteDurationOfLastNoteIfIsNecessary(
+          duration
+        );
+        console.log(note, velocity, playDuration, waitDuration);
+        this.recordingManager.recordIfNecessary({
+          note,
+          velocity,
+          playDuration,
+          waitDuration,
+        });
+      });
+      // TODO: DURATION!!! =>alternative setTimeout
+      const text = utils.createSVGElement("text");
+      utils.addTextContent(text, noteName);
+      utils.setAttributes(whiteKeyTextGroup, { width: this.whiteKeyWidth });
+      utils.setAttributes(text, {
+        x: whiteKeyPositionX + this.whiteKeyWidth / 2,
+        y: 380,
+        "text-anchor": "middle",
+      });
+      utils.setAttributes(whiteKey, {
+        x: whiteKeyPositionX,
+        "data-note-name": noteName,
+        rx: "15",
+        ry: "15",
+      });
+
+      text.classList.add("white-key-text");
+      whiteKeyTextGroup.appendChild(whiteKey);
+      whiteKeyTextGroup.appendChild(text);
+      this.svg.appendChild(whiteKeyTextGroup);
+      whiteKeyPositionX += this.whiteKeyWidth;
+    });
+  }
+
   useEffect(() => {
     pianoElem.current.innerHTML = "Hallo2";
     svg = createMainSvg();
+    addWhiteKeys();
     pianoElem.current.appendChild(svg);
   });
 
