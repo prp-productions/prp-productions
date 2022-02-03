@@ -23,7 +23,7 @@ export const Piano = () => {
   };
 
   function getAllNaturalNotes([firstNote, lastNote]) {
-	  // Assign octave number, notes and positions to variables
+    // Assign octave number, notes and positions to variables
     const naturalNotes = ["C", "D", "E", "F", "G", "A", "B"];
     const firstNoteName = firstNote[0];
     const firstOctaveNumber = parseInt(firstNote[1]);
@@ -58,7 +58,7 @@ export const Piano = () => {
     return notes;
   }
 
-function addWhiteKeys() {
+  function addWhiteKeys() {
     let whiteKeyPositionX = 0;
     this.allNaturalNotes.forEach((noteName) => {
       const whiteKeyTextGroup = utils.createSVGElement("g");
