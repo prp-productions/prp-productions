@@ -64,12 +64,12 @@ export const Piano = () => {
 
   function addWhiteKeys() {
     let whiteKeyPositionX = 0;
-    this.allNaturalNotes.forEach((noteName) => {
+    allNaturalNotes.forEach((noteName) => {
       const whiteKeyTextGroup = utils.createSVGElement("g");
-      const whiteKey = this.createKey({
+      const whiteKey = createKey({
         className: "white-key",
-        width: this.whiteKeyWidth,
-        height: this.pianoHeight,
+        width: whiteKeyWidth,
+        height: pianoHeight,
       });
       //TODO change eventListener
       whiteKey.addEventListener("click", (e) => {
@@ -107,9 +107,9 @@ export const Piano = () => {
       // TODO: DURATION!!! =>alternative setTimeout
       const text = utils.createSVGElement("text");
       utils.addTextContent(text, noteName);
-      utils.setAttributes(whiteKeyTextGroup, { width: this.whiteKeyWidth });
+      utils.setAttributes(whiteKeyTextGroup, { width: whiteKeyWidth });
       utils.setAttributes(text, {
-        x: whiteKeyPositionX + this.whiteKeyWidth / 2,
+        x: whiteKeyPositionX + whiteKeyWidth / 2,
         y: 380,
         "text-anchor": "middle",
       });
@@ -123,9 +123,22 @@ export const Piano = () => {
       text.classList.add("white-key-text");
       whiteKeyTextGroup.appendChild(whiteKey);
       whiteKeyTextGroup.appendChild(text);
-      this.svg.appendChild(whiteKeyTextGroup);
-      whiteKeyPositionX += this.whiteKeyWidth;
+      svg.appendChild(whiteKeyTextGroup);
+      whiteKeyPositionX += whiteKeyWidth;
     });
+  }
+  
+ 
+ ///blackKeys
+
+  function createKey({ className, width, height }) {
+    const key = utils.createSVGElement("rect");
+    key.classList.add(className, "key");
+    utils.setAttributes(key, {
+      width: width,
+      height: height,
+    });
+    return key;
   }
 
   useEffect(() => {
