@@ -13,6 +13,8 @@ export const Piano = () => {
   const pianoHeight = 400;
   const pianoWidth = allNaturalNotes.length * whiteKeyWidth;
   const pianoElem = useRef(null);
+  const ts1 = 0;
+  const ts2 = 0;
 
   const createMainSvg = () => {
     const returnSvg = utils.createSVGElement("svg");

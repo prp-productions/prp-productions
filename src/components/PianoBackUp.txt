@@ -17,8 +17,7 @@ export class Piano extends React.Component {
 
     //this.keydown();
 
-    this.ts1 = 0;
-    this.ts2 = 0;
+    
   }
 
   // keydown() {
