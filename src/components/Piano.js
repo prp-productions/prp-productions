@@ -15,6 +15,8 @@ export const Piano = () => {
   const pianoElem = useRef(null);
   const ts1 = 0;
   const ts2 = 0;
+  const naturalNotesSharps = ["C", "D", "F", "G", "A"];
+  const naturalNotesFlats = ["D", "E", "G", "A", "B"];
 
   const createMainSvg = () => {
     const returnSvg = utils.createSVGElement("svg");
@@ -128,24 +130,97 @@ export const Piano = () => {
       whiteKeyPositionX += whiteKeyWidth;
     });
   }
-  
- 
- ///blackKeys
 
+  function addBlackKeys() {
+    let blackKeyPositionX = 60;
+    allNaturalNotes.forEach((naturalNote, index, array) => {
+      // If last iteration of keys, do not add black key
+      if (index === array.length - 1) {
+        return;
+      }
+      const blackKeyTextGroup = utils.createSVGElement("g");
+      const blackKey = createKey({
+        className: "black-key",
+        width: whiteKeyWidth / 2,
+        height: pianoHeight / 1.6,
+      });
+
+      blackKey.addEventListener("click", (e) => {
+        const noteName = e.target.getAttribute("data-sharp-name");
+        console.log("NoteName-sharp:", noteName);
+        const note = getNoteFromNoteName(noteName);
+        const velocity = 35;
+        for (let i = 0; i < 1; i++) {
+          audioManager.noteOn(note, velocity);
+          console.log(blackKey);
+        }
+        audioManager.noteOffWithKeyPress(note);
+        this.recordingManager.recordIfNecessary({ note, velocity });
+      });
+
+      const flatNameText = utils.createSVGElement("text");
+      const sharpNameText = utils.createSVGElement("text");
+
+      utils.setAttributes(blackKeyTextGroup, { width: whiteKeyWidth / 2 });
+
+      for (let i = 0; i < naturalNotesSharps.length; i++) {
+        let naturalSharpNoteName = naturalNotesSharps[i];
+        let naturalFlatNoteName = naturalNotesFlats[i];
+
+        if (naturalSharpNoteName === naturalNote[0]) {
+          utils.setAttributes(blackKey, {
+            x: blackKeyPositionX,
+            "data-sharp-name": `${naturalSharpNoteName}#${naturalNote[1]}`,
+            "data-flat-name": `${naturalFlatNoteName}b${naturalNote[1]}`,
+            rx: "8",
+            ry: "8",
+          });
+          utils.setAttributes(sharpNameText, {
+            "text-anchor": "middle",
+            y: 215,
+            x: blackKeyPositionX + whiteKeyWidth / 4,
+          });
+
+          utils.setAttributes(flatNameText, {
+            "text-anchor": "middle",
+            y: 235,
+            x: blackKeyPositionX + whiteKeyWidth / 4,
+          });
+          utils.addTextContent(sharpNameText, `${naturalSharpNoteName}♯`);
+          utils.addTextContent(flatNameText, `${naturalFlatNoteName}♭`);
+
+          flatNameText.classList.add("black-key-text");
+          sharpNameText.classList.add("black-key-text");
+
+          // Add double spacing between D# and A#
+          if (naturalSharpNoteName === "D" || naturalSharpNoteName === "A") {
+            blackKeyPositionX += whiteKeyWidth * 2;
+          } else {
+            blackKeyPositionX += whiteKeyWidth;
+          }
+          blackKeyTextGroup.appendChild(blackKey);
+          blackKeyTextGroup.appendChild(flatNameText);
+          blackKeyTextGroup.appendChild(sharpNameText);
+        }
+      }
+      svg.appendChild(blackKeyTextGroup);
+    });
+  }
   function createKey({ className, width, height }) {
     const key = utils.createSVGElement("rect");
     key.classList.add(className, "key");
-    utils.setAttributes(key, {
-      width: width,
-      height: height,
-    });
+    utils.setAttributes(key, { width: width, height: height });
     return key;
   }
+
+  
 
   useEffect(() => {
     pianoElem.current.innerHTML = "Hallo2";
     svg = createMainSvg();
     addWhiteKeys();
+    addBlackKeys();
+
     pianoElem.current.appendChild(svg);
   });
 
