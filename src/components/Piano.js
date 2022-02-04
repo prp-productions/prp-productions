@@ -206,6 +206,7 @@ export const Piano = () => {
       svg.appendChild(blackKeyTextGroup);
     });
   }
+  
   function createKey({ className, width, height }) {
     const key = utils.createSVGElement("rect");
     key.classList.add(className, "key");
@@ -213,14 +214,26 @@ export const Piano = () => {
     return key;
   }
 
-  
+  function createOctave(octaveNumber) {
+    //! WTF is octaveWidth?
+    const octaveWidth = 100;
+    const octave = utils.createSVGElement("g");
+    octave.classList.add("octave");
+
+    octave.setAttribute(
+      "transform",
+
+      `translate(${octaveNumber * octaveWidth}, 0)`
+    );
+    return octave;
+  }
 
   useEffect(() => {
     pianoElem.current.innerHTML = "Hallo2";
     svg = createMainSvg();
     addWhiteKeys();
     addBlackKeys();
-
+    createOctave();
     pianoElem.current.appendChild(svg);
   });
 
