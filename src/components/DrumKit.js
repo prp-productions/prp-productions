@@ -1,7 +1,21 @@
 import "../styles/drumKit.css";
 import { Howl, Howler } from "howler";
+import React from "react";
+import keydown, { Keys } from "react-keydown";
+import { useState, useEffect } from "react";
 
 export const DrumKit = () => {
+  const [pressedKey, setPressedKey] = useState("");
+  const handleKeyPress = (e) => {
+    setPressedKey(e.key);
+    switch (e.key) {
+      case "1":
+        playClap();
+
+        break;
+    }
+  };
+
   const drums = new Howl({
     src: [
       "./mediaDirectory/drumSounds/drums.webm",
@@ -59,6 +73,10 @@ export const DrumKit = () => {
     let soundToPlay = "CYCdh_AcouKick-14";
     console.log(soundToPlay);
     drums.play(soundToPlay);
+    if (keydown.e) {
+      drums.play(soundToPlay);
+      console.log("k");
+    }
   }
 
   //   document.addEventListener("keydown", (e) => {
@@ -103,14 +121,13 @@ export const DrumKit = () => {
     drums.play(soundToPlay);
     console.log(soundToPlay, drums);
   }
-
-  //   function handleKeyPress(e.key, soundToPlay) {
-
-  //   return <div className="drumKit">drumKit</div>;
+  const getDrumClasses = (kind) => {
+    return `pad ${kind}${pressedKey === "1" ? " playing" : ""}`;
+  };
   return (
-    <div className="drumkit">
+    <div className="drumkit" onKeyPress={(e) => handleKeyPress(e)} tabIndex="0">
       <div
-        className="pad clap"
+        className={getDrumClasses("clap")}
         onClick={() => handleDrumClick("CYCdh_LudRimC-07")}
       >
         <img src="images/drumKitIcons/clap.png" alt="clap" />
