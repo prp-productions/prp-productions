@@ -1,7 +1,42 @@
 import "../styles/drumKit.css";
 import { Howl, Howler } from "howler";
+import React from "react";
+import keydown, { Keys } from "react-keydown";
+import { useState, useEffect } from "react";
 
 export const DrumKit = () => {
+  const [pressedKey, setPressedKey] = useState("");
+  const handleKeyPress = (e) => {
+    setPressedKey(e.key);
+    switch (e.key) {
+      case "1":
+        playClap();
+        break;
+
+      case "2":
+        playClHiHat();
+        break;
+      case "3":
+        playCrash();
+        break;
+      case "7":
+        playKick();
+        break;
+      case "8":
+        playOpHiHat();
+        break;
+      case "9":
+        playSnare();
+        break;
+    }
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setPressedKey("");
+    }, 200);
+  }, [pressedKey]);
+
   const drums = new Howl({
     src: [
       "./mediaDirectory/drumSounds/drums.webm",
@@ -17,10 +52,7 @@ export const DrumKit = () => {
     },
   });
 
-  //drums.play();
-
-  //const drumkit = document.querySelector(".drumkit");
-
+  // links sounds to pads
   function playDrum(event) {
     if (event.target.classList.contains("pad")) {
       event.preventDefault();
@@ -29,12 +61,12 @@ export const DrumKit = () => {
     }
   }
 
+  // allows individual pads to be played
   function playSnare() {
     let soundToPlay = "CYCdh_Kurz02-Snr02";
     console.log(soundToPlay);
     drums.play(soundToPlay);
   }
-
   function playCrash() {
     let soundToPlay = "CYCdh_Crash-01";
     console.log(soundToPlay);
@@ -59,64 +91,46 @@ export const DrumKit = () => {
     let soundToPlay = "CYCdh_AcouKick-14";
     console.log(soundToPlay);
     drums.play(soundToPlay);
+    if (keydown.e) {
+      drums.play(soundToPlay);
+      console.log("k");
+    }
   }
-
-  //   document.addEventListener("keydown", (e) => {
-  //     if (e.key === "l") {
-  //       playSnare();
-  //       console.log("snare");
-  //     } else {
-  //       if (e.key === "f") {
-  //         playCrash();
-  //         console.log("crash");
-  //       } else {
-  //         if (e.key === "s") {
-  //           playClap();
-  //           console.log("clap");
-  //         } else {
-  //           if (e.key === "d") {
-  //             playClHiHat();
-  //             console.log("closed high hat");
-  //           } else {
-  //             if (e.key === "j") {
-  //               playKick();
-  //               console.log("kick");
-  //             } else {
-  //               if (e.key === "k") {
-  //                 playClHiHat();
-  //                 console.log("closed high hat");
-  //               }
-  //             }
-  //           }
-  //         }
-  //       }
-  //     }
-  //   });
-
-  //   drumkit.addEventListener("click", () => {
-  //     //if (e.target.classList.contains("pad")) {
-  //     let soundToPlay = this.target.dataset.sound;
-  //     drums.play(soundToPlay);
-  //   });
-
+  // allows mouse click to play pads
   function handleDrumClick(soundToPlay) {
     drums.play(soundToPlay);
     console.log(soundToPlay, drums);
   }
+  // defines pad classNames for dynamic styling on strike;
+  const getClapClasses = (kind) => {
+    return `pad ${kind}${pressedKey === "1" ? " playing" : ""}`;
+  };
+  const getClHatClasses = (kind) => {
+    return `pad ${kind}${pressedKey === "2" ? " playing" : ""}`;
+  };
+  const getCrashClasses = (kind) => {
+    return `pad ${kind}${pressedKey === "3" ? " playing" : ""}`;
+  };
+  const getKickClasses = (kind) => {
+    return `pad ${kind}${pressedKey === "7" ? " playing" : ""}`;
+  };
+  const getOpHatClasses = (kind) => {
+    return `pad ${kind}${pressedKey === "8" ? " playing" : ""}`;
+  };
+  const getSnareClasses = (kind) => {
+    return `pad ${kind}${pressedKey === "9" ? " playing" : ""}`;
+  };
 
-  //   function handleKeyPress(e.key, soundToPlay) {
-
-  //   return <div className="drumKit">drumKit</div>;
   return (
-    <div className="drumkit">
+    <div className="drumkit" onKeyPress={(e) => handleKeyPress(e)} tabIndex="0">
       <div
-        className="pad clap"
+        className={getClapClasses("clap")}
         onClick={() => handleDrumClick("CYCdh_LudRimC-07")}
       >
         <img src="images/drumKitIcons/clap.png" alt="clap" />
       </div>
       <div
-        className="pad clHat"
+        className={getClHatClasses("clHat")}
         onClick={() => handleDrumClick("CYCdh_Sab_ClHat-06")}
       >
         <img
@@ -125,26 +139,26 @@ export const DrumKit = () => {
         />
       </div>
       <div
-        className="pad crash"
+        className={getCrashClasses("crash")}
         onClick={() => handleDrumClick("CYCdh_Crash-01")}
       >
         <img src="images/drumKitIcons/crash.png" alt="crash" />
       </div>
 
       <div
-        className="pad kick"
+        className={getKickClasses("kick")}
         onClick={() => handleDrumClick("CYCdh_AcouKick-14")}
       >
         <img src="images/drumKitIcons/kick.png" alt="kick" />
       </div>
       <div
-        className="pad opHat"
+        className={getOpHatClasses("opHat")}
         onClick={() => handleDrumClick("KHats Open-07")}
       >
         <img src="images/drumKitIcons/open_high_hat.png" alt="open high hat" />
       </div>
       <div
-        className="pad snare"
+        className={getSnareClasses("snare")}
         onClick={() => handleDrumClick("CYCdh_Kurz02-Snr02")}
       >
         <img src="images/drumKitIcons/snare.png" alt="clap" />
