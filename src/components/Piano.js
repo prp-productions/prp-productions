@@ -4,12 +4,10 @@ import { getNoteFromNoteName } from "../utils/ChannelKeyMap.js";
 import { AudioManager } from "../classes/AudioManager.js";
 import { MidiKeyboard } from "../classes/MidiKeyboard";
 // import { RecordingManager } from '../classes/RecordingManager';
-import '../styles/piano.css';
+import "../styles/piano.css";
 
 const audioManager = new AudioManager();
 // const recordingManager = new RecordingManager();
-
-const midiKeyboard = new MidiKeyboard();
 
 export const Piano = () => {
   let svg = null;
@@ -102,20 +100,20 @@ export const Piano = () => {
         const playDuration = 200;
 
         const waitDuration = 0;
-        
-      //   recordingManager.overwriteDurationOfLastNoteIfIsNecessary(
-      //     duration
-      //   );
-      //   console.log(note, velocity, playDuration, waitDuration);
-      //   recordingManager.recordIfNecessary({
-      //     note,
-      //     velocity,
-      //     playDuration,
-      //     waitDuration,
-      //   });
+
+        //   recordingManager.overwriteDurationOfLastNoteIfIsNecessary(
+        //     duration
+        //   );
+        //   console.log(note, velocity, playDuration, waitDuration);
+        //   recordingManager.recordIfNecessary({
+        //     note,
+        //     velocity,
+        //     playDuration,
+        //     waitDuration,
+        //   });
       });
       // TODO: DURATION!!! =>alternative setTimeout
-      
+
       const text = utils.createSVGElement("text");
       utils.addTextContent(text, noteName);
       utils.setAttributes(whiteKeyTextGroup, { width: whiteKeyWidth });
@@ -238,7 +236,8 @@ export const Piano = () => {
   // }
 
   function displayNotes(notes) {
-    const pianoKeys = document.querySelectorAll(".key");
+    // const pianoKeys = document.querySelectorAll(".key");
+    const pianoKeys = pianoElem.current.querySelectorAll(".key");
     utils.removeClassFromNodeCollection(pianoKeys, "show");
     notes.forEach((noteName) => {
       pianoKeys.forEach((key) => {
@@ -257,6 +256,7 @@ export const Piano = () => {
   }
 
   useEffect(() => {
+    new MidiKeyboard(displayNotes);
     pianoElem.current.innerHTML = "Hallo2";
     svg = createMainSvg();
     addWhiteKeys();

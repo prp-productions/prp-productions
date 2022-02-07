@@ -7,7 +7,9 @@ import { Piano } from "../components/Piano.js";
 const audioManager = new AudioManager();
 
 export class MidiKeyboard {
-  constructor() {
+  constructor(displayNotes) {
+    console.log(displayNotes);
+    this.displayNotes = displayNotes;
     if (navigator.requestMIDIAccess) {
       navigator.requestMIDIAccess().then(
         (midiAccess) => {
@@ -24,7 +26,7 @@ export class MidiKeyboard {
     }
   }
 
-  handleInput(input) {
+  handleInput = (input)=> {
     const command = input.data[0];
     const note = input.data[1];
     const velocity = input.data[2];
@@ -33,11 +35,10 @@ export class MidiKeyboard {
       case 144: //noteOn
         if (velocity > 0) {
           audioManager.noteOn(note, velocity);
-          //TODO: show notes on browser Keyboard
-          // if (piano !== null) {
-          //   const stringNote = channelKeyMap[note.toString()];
-          //   if (stringNote) piano.displayNotes([stringNote]);
-          // }
+          //TODO: show notes on browser Keyboard //
+          const stringNote = channelKeyMap[note.toString()];
+          console.log(this.displayNotes);
+          if (stringNote) this.displayNotes([stringNote]);
           console.log(
             "Note:",
             note,
