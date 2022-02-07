@@ -2,7 +2,7 @@ import { useRef, useEffect } from "react";
 import * as utils from "../utils/General";
 import { getNoteFromNoteName } from "../utils/ChannelKeyMap.js";
 import { AudioManager } from "../classes/AudioManager.js";
-
+import '../styles/piano.css'
 const audioManager = new AudioManager();
 
 export const Piano = () => {
@@ -227,6 +227,7 @@ export const Piano = () => {
     );
     return octave;
   }
+
   function displayNotes(notes) {
     const pianoKeys = document.querySelectorAll(".key");
     utils.removeClassFromNodeCollection(pianoKeys, "show");
@@ -246,14 +247,13 @@ export const Piano = () => {
     });
   }
 
-
   useEffect(() => {
     pianoElem.current.innerHTML = "Hallo2";
     svg = createMainSvg();
     addWhiteKeys();
     addBlackKeys();
     createOctave();
-    displayNotes();
+    // displayNotes();
     pianoElem.current.appendChild(svg);
   });
 
