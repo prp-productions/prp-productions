@@ -11,7 +11,22 @@ export const DrumKit = () => {
     switch (e.key) {
       case "1":
         playClap();
+        break;
 
+      case "2":
+        playClHiHat();
+        break;
+      case "3":
+        playCrash();
+        break;
+      case "7":
+        playKick();
+        break;
+      case "8":
+        playOpHiHat();
+        break;
+      case "9":
+        playSnare();
         break;
     }
   };
@@ -37,10 +52,7 @@ export const DrumKit = () => {
     },
   });
 
-  //drums.play();
-
-  //const drumkit = document.querySelector(".drumkit");
-
+  // links sounds to pads
   function playDrum(event) {
     if (event.target.classList.contains("pad")) {
       event.preventDefault();
@@ -49,12 +61,12 @@ export const DrumKit = () => {
     }
   }
 
+  // allows individual pads to be played
   function playSnare() {
     let soundToPlay = "CYCdh_Kurz02-Snr02";
     console.log(soundToPlay);
     drums.play(soundToPlay);
   }
-
   function playCrash() {
     let soundToPlay = "CYCdh_Crash-01";
     console.log(soundToPlay);
@@ -84,49 +96,12 @@ export const DrumKit = () => {
       console.log("k");
     }
   }
-
-  //   document.addEventListener("keydown", (e) => {
-  //     if (e.key === "l") {
-  //       playSnare();
-  //       console.log("snare");
-  //     } else {
-  //       if (e.key === "f") {
-  //         playCrash();
-  //         console.log("crash");
-  //       } else {
-  //         if (e.key === "s") {
-  //           playClap();
-  //           console.log("clap");
-  //         } else {
-  //           if (e.key === "d") {
-  //             playClHiHat();
-  //             console.log("closed high hat");
-  //           } else {
-  //             if (e.key === "j") {
-  //               playKick();
-  //               console.log("kick");
-  //             } else {
-  //               if (e.key === "k") {
-  //                 playClHiHat();
-  //                 console.log("closed high hat");
-  //               }
-  //             }
-  //           }
-  //         }
-  //       }
-  //     }
-  //   });
-
-  //   drumkit.addEventListener("click", () => {
-  //     //if (e.target.classList.contains("pad")) {
-  //     let soundToPlay = this.target.dataset.sound;
-  //     drums.play(soundToPlay);
-  //   });
-
+  // allows mouse click to play pads
   function handleDrumClick(soundToPlay) {
     drums.play(soundToPlay);
     console.log(soundToPlay, drums);
   }
+  // defines pad classNames for dynamic styling.
   const getDrumClasses = (kind) => {
     return `pad ${kind}${pressedKey === "1" ? " playing" : ""}`;
   };
