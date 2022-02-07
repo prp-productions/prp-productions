@@ -2,7 +2,8 @@ import { useRef, useEffect } from "react";
 import * as utils from "../utils/General";
 import { getNoteFromNoteName } from "../utils/ChannelKeyMap.js";
 import { AudioManager } from "../classes/AudioManager.js";
-import '../styles/piano.css'
+import '../styles/piano.css';
+
 const audioManager = new AudioManager();
 
 export const Piano = () => {
@@ -214,19 +215,20 @@ export const Piano = () => {
     return key;
   }
 
-  function createOctave(octaveNumber) {
-    //! WTF is octaveWidth?
-    const octaveWidth = 100;
-    const octave = utils.createSVGElement("g");
-    octave.classList.add("octave");
+  // function createOctave(octaveNumber) {
+  //   //! WTF is octaveWidth?
+  //   console.log(octaveNumber);
+  //   const octaveWidth = 100;
+  //   const octave = utils.createSVGElement("g");
+  //   octave.classList.add("octave");
 
-    octave.setAttribute(
-      "transform",
+  //   octave.setAttribute(
+  //     "transform",
 
-      `translate(${octaveNumber * octaveWidth}, 0)`
-    );
-    return octave;
-  }
+  //     `translate(${octaveNumber * octaveWidth}, 0)`
+  //   );
+  //   return octave;
+  // }
 
   function displayNotes(notes) {
     const pianoKeys = document.querySelectorAll(".key");
@@ -252,7 +254,7 @@ export const Piano = () => {
     svg = createMainSvg();
     addWhiteKeys();
     addBlackKeys();
-    createOctave();
+    // createOctave();
     // displayNotes();
     pianoElem.current.appendChild(svg);
   });

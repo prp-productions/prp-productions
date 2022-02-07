@@ -1,5 +1,5 @@
 import "./midiKeyboard.css";
-import { AudioManager } from "../classes/AudioManager.js";
+import { AudioManager } from "./AudioManager.js";
 import { channelKeyMap } from "../utils/ChannelKeyMap.js";
 import { Piano } from "../components/Piano.js";
 
