@@ -16,7 +16,7 @@ body {
 }
 
 .playing {
-  background: yellow !important;
+  background: radial-gradient(#fa5f4a, #539df7) !important;
 }
 
 .pad {

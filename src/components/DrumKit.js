@@ -101,21 +101,36 @@ export const DrumKit = () => {
     drums.play(soundToPlay);
     console.log(soundToPlay, drums);
   }
-  // defines pad classNames for dynamic styling.
-  const getDrumClasses = (kind) => {
+  // defines pad classNames for dynamic styling on strike;
+  const getClapClasses = (kind) => {
     return `pad ${kind}${pressedKey === "1" ? " playing" : ""}`;
+  };
+  const getClHatClasses = (kind) => {
+    return `pad ${kind}${pressedKey === "2" ? " playing" : ""}`;
+  };
+  const getCrashClasses = (kind) => {
+    return `pad ${kind}${pressedKey === "3" ? " playing" : ""}`;
+  };
+  const getKickClasses = (kind) => {
+    return `pad ${kind}${pressedKey === "7" ? " playing" : ""}`;
+  };
+  const getOpHatClasses = (kind) => {
+    return `pad ${kind}${pressedKey === "8" ? " playing" : ""}`;
+  };
+  const getSnareClasses = (kind) => {
+    return `pad ${kind}${pressedKey === "9" ? " playing" : ""}`;
   };
 
   return (
     <div className="drumkit" onKeyPress={(e) => handleKeyPress(e)} tabIndex="0">
       <div
-        className={getDrumClasses("clap")}
+        className={getClapClasses("clap")}
         onClick={() => handleDrumClick("CYCdh_LudRimC-07")}
       >
         <img src="images/drumKitIcons/clap.png" alt="clap" />
       </div>
       <div
-        className="pad clHat"
+        className={getClHatClasses("clHat")}
         onClick={() => handleDrumClick("CYCdh_Sab_ClHat-06")}
       >
         <img
@@ -124,26 +139,26 @@ export const DrumKit = () => {
         />
       </div>
       <div
-        className="pad crash"
+        className={getCrashClasses("crash")}
         onClick={() => handleDrumClick("CYCdh_Crash-01")}
       >
         <img src="images/drumKitIcons/crash.png" alt="crash" />
       </div>
 
       <div
-        className="pad kick"
+        className={getKickClasses("kick")}
         onClick={() => handleDrumClick("CYCdh_AcouKick-14")}
       >
         <img src="images/drumKitIcons/kick.png" alt="kick" />
       </div>
       <div
-        className="pad opHat"
+        className={getOpHatClasses("opHat")}
         onClick={() => handleDrumClick("KHats Open-07")}
       >
         <img src="images/drumKitIcons/open_high_hat.png" alt="open high hat" />
       </div>
       <div
-        className="pad snare"
+        className={getSnareClasses("snare")}
         onClick={() => handleDrumClick("CYCdh_Kurz02-Snr02")}
       >
         <img src="images/drumKitIcons/snare.png" alt="clap" />
