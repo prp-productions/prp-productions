@@ -16,6 +16,12 @@ export const DrumKit = () => {
     }
   };
 
+  useEffect(() => {
+    setTimeout(() => {
+      setPressedKey("");
+    }, 200);
+  }, [pressedKey]);
+
   const drums = new Howl({
     src: [
       "./mediaDirectory/drumSounds/drums.webm",
@@ -124,6 +130,7 @@ export const DrumKit = () => {
   const getDrumClasses = (kind) => {
     return `pad ${kind}${pressedKey === "1" ? " playing" : ""}`;
   };
+
   return (
     <div className="drumkit" onKeyPress={(e) => handleKeyPress(e)} tabIndex="0">
       <div
