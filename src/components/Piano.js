@@ -235,10 +235,14 @@ export const Piano = () => {
   //   return octave;
   // }
 
+  function hideNotes() {
+    const pianoKeys = pianoElem.current.querySelectorAll(".key");
+    utils.removeClassFromNodeCollection(pianoKeys, "show");
+  }
+
   function displayNotes(notes) {
     // const pianoKeys = document.querySelectorAll(".key");
     const pianoKeys = pianoElem.current.querySelectorAll(".key");
-    utils.removeClassFromNodeCollection(pianoKeys, "show");
     notes.forEach((noteName) => {
       pianoKeys.forEach((key) => {
         const naturalName = key.dataset.noteName;
@@ -256,7 +260,7 @@ export const Piano = () => {
   }
 
   useEffect(() => {
-    new MidiKeyboard(displayNotes);
+    new MidiKeyboard(displayNotes, hideNotes);
     pianoElem.current.innerHTML = "Hallo2";
     svg = createMainSvg();
     addWhiteKeys();
