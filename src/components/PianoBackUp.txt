@@ -45,59 +45,11 @@ export class Piano extends React.Component {
 
   
 
-  createOctave(octaveNumber) {
-    //! WTF is octaveWidth?
-    const octaveWidth = 100;
-    const octave = utils.createSVGElement("g");
-    octave.classList.add("octave");
-
-    octave.setAttribute(
-      "transform",
-
-      `translate(${octaveNumber * octaveWidth}, 0)`
-    );
-    return octave;
-  }
+ 
 
   
 
   
 
-
-  displayNotes(notes) {
-    const pianoKeys = document.querySelectorAll(".key");
-    utils.removeClassFromNodeCollection(pianoKeys, "show");
-    notes.forEach((noteName) => {
-      pianoKeys.forEach((key) => {
-        const naturalName = key.dataset.noteName;
-        const sharpName = key.dataset.sharpName;
-        const flatName = key.dataset.flatName;
-        if (
-          naturalName === noteName ||
-          sharpName === noteName ||
-          flatName === noteName
-        ) {
-          key.classList.add("show");
-        }
-      });
-    });
-  }
-  render() {
-    return (
-      <div className="main_piano_div">
-        <div>
-          {" "}
-          {this.addWhiteKeys}
-          {this.addBlackKeys}
-          {this.createOctave}
-          {this.createKey}
-          {this.getAllNaturalNotes}
-          {this.createMainSvg}
-          <div> {this.displayNotes}</div>
-        </div>
-      </div>
-    );
-  }
-}
 
 export default Piano;

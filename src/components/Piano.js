@@ -90,8 +90,8 @@ export const Piano = () => {
         }
 
         audioManager.noteOffWithKeyPress(note);
-        console.log("testing timestamp: ", this.ts1, this.ts2);
-        const duration = this.ts1 === 0 ? 0 : Math.abs(this.ts2 - this.ts1);
+        console.log("testing timestamp: ", ts1, ts2);
+        const duration = ts1 === 0 ? 0 : Math.abs(ts2 - ts1);
         console.log("testing duration: ", duration);
         const playDuration = 200;
 
@@ -206,7 +206,7 @@ export const Piano = () => {
       svg.appendChild(blackKeyTextGroup);
     });
   }
-  
+
   function createKey({ className, width, height }) {
     const key = utils.createSVGElement("rect");
     key.classList.add(className, "key");
@@ -227,6 +227,25 @@ export const Piano = () => {
     );
     return octave;
   }
+  function displayNotes(notes) {
+    const pianoKeys = document.querySelectorAll(".key");
+    utils.removeClassFromNodeCollection(pianoKeys, "show");
+    notes.forEach((noteName) => {
+      pianoKeys.forEach((key) => {
+        const naturalName = key.dataset.noteName;
+        const sharpName = key.dataset.sharpName;
+        const flatName = key.dataset.flatName;
+        if (
+          naturalName === noteName ||
+          sharpName === noteName ||
+          flatName === noteName
+        ) {
+          key.classList.add("show");
+        }
+      });
+    });
+  }
+
 
   useEffect(() => {
     pianoElem.current.innerHTML = "Hallo2";
@@ -234,6 +253,7 @@ export const Piano = () => {
     addWhiteKeys();
     addBlackKeys();
     createOctave();
+    displayNotes();
     pianoElem.current.appendChild(svg);
   });
 
