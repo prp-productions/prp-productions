@@ -1,80 +1,85 @@
+import { useRef, useEffect } from "react";
 import * as utils from "../utils/General";
-import { AudioManager } from "../classes/AudioManager.js";
 import { getNoteFromNoteName } from "../utils/ChannelKeyMap.js";
-import React from "react";
-
-import "../styles/piano.css";
-//import { RecordingManager } from "./RecordingManager";
-
+import { AudioManager } from "../classes/AudioManager.js";
+import '../styles/piano.css'
 const audioManager = new AudioManager();
 
-export class Piano extends React.Component {
-  // TODO: create display methods
-  constructor(range = ["C2", "C7"]) {
-    super();
-    this.naturalNotesFlats = ["D", "E", "G", "A", "B"];
-    this.naturalNotesSharps = ["C", "D", "F", "G", "A"];
-    this.naturalNotes = ["C", "D", "E", "F", "G", "A", "B"];
-    this.whiteKeyWidth = 80;
-    this.pianoHeight = 400;
-    this.range = range;
-    this.allNaturalNotes = this.getAllNaturalNotes(this.range);
-    this.pianoWidth = this.allNaturalNotes.length * this.whiteKeyWidth;
-    this.pianoElem = document.querySelector("#piano");
-    this.svg = this.createMainSvg();
+export const Piano = () => {
+  let svg = null;
+  const range = ["C2", "C7"];
+  const allNaturalNotes = getAllNaturalNotes(range);
+  const whiteKeyWidth = 80;
+  const pianoHeight = 400;
+  const pianoWidth = allNaturalNotes.length * whiteKeyWidth;
+  const pianoElem = useRef(null);
+  const ts1 = 0;
+  const ts2 = 0;
+  const naturalNotesSharps = ["C", "D", "F", "G", "A"];
+  const naturalNotesFlats = ["D", "E", "G", "A", "B"];
 
-    //this.recordingManager = new RecordingManager();
+  const createMainSvg = () => {
+    const returnSvg = utils.createSVGElement("svg");
+    utils.setAttributes(returnSvg, {
+      width: "100%",
+      version: "1.1",
+      xmlns: "http://www.w3.org/2000/svg",
+      "xmlns:xlink": "http://www.w3.org/1999/xlink",
+      viewBox: `0 0 ${pianoWidth} ${pianoHeight}`,
+    });
+    return returnSvg;
+  };
 
-    this.addWhiteKeys();
-    this.addBlackKeys();
+  function getAllNaturalNotes([firstNote, lastNote]) {
+    // Assign octave number, notes and positions to variables
+    const naturalNotes = ["C", "D", "E", "F", "G", "A", "B"];
+    const firstNoteName = firstNote[0];
+    const firstOctaveNumber = parseInt(firstNote[1]);
+    const lastNoteName = lastNote[0];
+    const lastOctaveNumber = parseInt(lastNote[1]);
+    const firstNotePosition = naturalNotes.indexOf(firstNoteName);
+    const lastNotePosition = naturalNotes.indexOf(lastNoteName);
+    const notes = [];
+    for (
+      let octaveNumber = firstOctaveNumber;
+      octaveNumber <= lastOctaveNumber;
+      octaveNumber++
+    ) {
+      // Handle first octave
+      if (octaveNumber === firstOctaveNumber) {
+        naturalNotes.slice(firstNotePosition).forEach((noteName) => {
+          notes.push(noteName + octaveNumber);
+        });
 
-    this.pianoElem.appendChild(this.svg);
-
-    //this.keydown();
-
-    this.ts1 = 0;
-    this.ts2 = 0;
+        // Handle last octave
+      } else if (octaveNumber === lastOctaveNumber) {
+        naturalNotes.slice(0, lastNotePosition + 1).forEach((noteName) => {
+          notes.push(noteName + octaveNumber);
+        });
+      } else {
+        naturalNotes.forEach((noteName) => {
+          notes.push(noteName + octaveNumber);
+        });
+      }
+    }
+    return notes;
   }
 
-  // keydown() {
-  //   document.addEventListener("keydown", (e) => {
-  //     document.addEventListener("keydown", (e) => {
-  //       if (!e.repeat) console.log(`Key "${e.key}" pressed  [event: keydown]`);
-  //       else console.log(`Key "${e.key}" repeating  [event: keydown]`);
-  //     });
-  //     document.addEventListener("beforeinput", (e) => {
-  //       console.log.log(
-  //         `Key "${e.data}" about to be input  [event: beforeinput]`
-  //       );
-  //     });
-  //     document.addEventListener("input", (e) => {
-  //       console.log(`Key "${e.data}" input  [event: input]`);
-  //     });
-  //     document.addEventListener("keyup", (e) => {
-  //       console.log(`Key "${e.key}" released  [event: keyup]`);
-  //     });
-  //     switch (e.key) {
-  //       case "c":
-  //         console.log("C");
-  //     }
-  //   });
-  // }
-
-  addWhiteKeys() {
+  function addWhiteKeys() {
     let whiteKeyPositionX = 0;
-    this.allNaturalNotes.forEach((noteName) => {
+    allNaturalNotes.forEach((noteName) => {
       const whiteKeyTextGroup = utils.createSVGElement("g");
-      const whiteKey = this.createKey({
+      const whiteKey = createKey({
         className: "white-key",
-        width: this.whiteKeyWidth,
-        height: this.pianoHeight,
+        width: whiteKeyWidth,
+        height: pianoHeight,
       });
       //TODO change eventListener
       whiteKey.addEventListener("click", (e) => {
-        if (this.ts2 !== 0) {
-          this.ts1 = this.ts2;
+        if (ts2 !== 0) {
+          ts1 = ts2;
         }
-        this.ts2 = new Date().getTime();
+        ts2 = new Date().getTime();
 
         const noteName = e.target.getAttribute("data-note-name");
         console.log(noteName);
@@ -85,8 +90,8 @@ export class Piano extends React.Component {
         }
 
         audioManager.noteOffWithKeyPress(note);
-        console.log("testing timestamp: ", this.ts1, this.ts2);
-        const duration = this.ts1 === 0 ? 0 : Math.abs(this.ts2 - this.ts1);
+        console.log("testing timestamp: ", ts1, ts2);
+        const duration = ts1 === 0 ? 0 : Math.abs(ts2 - ts1);
         console.log("testing duration: ", duration);
         const playDuration = 200;
 
@@ -105,9 +110,9 @@ export class Piano extends React.Component {
       // TODO: DURATION!!! =>alternative setTimeout
       const text = utils.createSVGElement("text");
       utils.addTextContent(text, noteName);
-      utils.setAttributes(whiteKeyTextGroup, { width: this.whiteKeyWidth });
+      utils.setAttributes(whiteKeyTextGroup, { width: whiteKeyWidth });
       utils.setAttributes(text, {
-        x: whiteKeyPositionX + this.whiteKeyWidth / 2,
+        x: whiteKeyPositionX + whiteKeyWidth / 2,
         y: 380,
         "text-anchor": "middle",
       });
@@ -121,23 +126,23 @@ export class Piano extends React.Component {
       text.classList.add("white-key-text");
       whiteKeyTextGroup.appendChild(whiteKey);
       whiteKeyTextGroup.appendChild(text);
-      this.svg.appendChild(whiteKeyTextGroup);
-      whiteKeyPositionX += this.whiteKeyWidth;
+      svg.appendChild(whiteKeyTextGroup);
+      whiteKeyPositionX += whiteKeyWidth;
     });
   }
 
-  addBlackKeys() {
+  function addBlackKeys() {
     let blackKeyPositionX = 60;
-    this.allNaturalNotes.forEach((naturalNote, index, array) => {
+    allNaturalNotes.forEach((naturalNote, index, array) => {
       // If last iteration of keys, do not add black key
       if (index === array.length - 1) {
         return;
       }
       const blackKeyTextGroup = utils.createSVGElement("g");
-      const blackKey = this.createKey({
+      const blackKey = createKey({
         className: "black-key",
-        width: this.whiteKeyWidth / 2,
-        height: this.pianoHeight / 1.6,
+        width: whiteKeyWidth / 2,
+        height: pianoHeight / 1.6,
       });
 
       blackKey.addEventListener("click", (e) => {
@@ -156,11 +161,11 @@ export class Piano extends React.Component {
       const flatNameText = utils.createSVGElement("text");
       const sharpNameText = utils.createSVGElement("text");
 
-      utils.setAttributes(blackKeyTextGroup, { width: this.whiteKeyWidth / 2 });
+      utils.setAttributes(blackKeyTextGroup, { width: whiteKeyWidth / 2 });
 
-      for (let i = 0; i < this.naturalNotesSharps.length; i++) {
-        let naturalSharpNoteName = this.naturalNotesSharps[i];
-        let naturalFlatNoteName = this.naturalNotesFlats[i];
+      for (let i = 0; i < naturalNotesSharps.length; i++) {
+        let naturalSharpNoteName = naturalNotesSharps[i];
+        let naturalFlatNoteName = naturalNotesFlats[i];
 
         if (naturalSharpNoteName === naturalNote[0]) {
           utils.setAttributes(blackKey, {
@@ -170,19 +175,17 @@ export class Piano extends React.Component {
             rx: "8",
             ry: "8",
           });
-
           utils.setAttributes(sharpNameText, {
             "text-anchor": "middle",
             y: 215,
-            x: blackKeyPositionX + this.whiteKeyWidth / 4,
+            x: blackKeyPositionX + whiteKeyWidth / 4,
           });
 
           utils.setAttributes(flatNameText, {
             "text-anchor": "middle",
             y: 235,
-            x: blackKeyPositionX + this.whiteKeyWidth / 4,
+            x: blackKeyPositionX + whiteKeyWidth / 4,
           });
-
           utils.addTextContent(sharpNameText, `${naturalSharpNoteName}♯`);
           utils.addTextContent(flatNameText, `${naturalFlatNoteName}♭`);
 
@@ -191,20 +194,27 @@ export class Piano extends React.Component {
 
           // Add double spacing between D# and A#
           if (naturalSharpNoteName === "D" || naturalSharpNoteName === "A") {
-            blackKeyPositionX += this.whiteKeyWidth * 2;
+            blackKeyPositionX += whiteKeyWidth * 2;
           } else {
-            blackKeyPositionX += this.whiteKeyWidth;
+            blackKeyPositionX += whiteKeyWidth;
           }
           blackKeyTextGroup.appendChild(blackKey);
           blackKeyTextGroup.appendChild(flatNameText);
           blackKeyTextGroup.appendChild(sharpNameText);
         }
       }
-      this.svg.appendChild(blackKeyTextGroup);
+      svg.appendChild(blackKeyTextGroup);
     });
   }
 
-  createOctave(octaveNumber) {
+  function createKey({ className, width, height }) {
+    const key = utils.createSVGElement("rect");
+    key.classList.add(className, "key");
+    utils.setAttributes(key, { width: width, height: height });
+    return key;
+  }
+
+  function createOctave(octaveNumber) {
     //! WTF is octaveWidth?
     const octaveWidth = 100;
     const octave = utils.createSVGElement("g");
@@ -218,64 +228,7 @@ export class Piano extends React.Component {
     return octave;
   }
 
-  createKey({ className, width, height }) {
-    const key = utils.createSVGElement("rect");
-    key.classList.add(className, "key");
-    utils.setAttributes(key, {
-      width: width,
-      height: height,
-    });
-    return key;
-  }
-
-  getAllNaturalNotes([firstNote, lastNote]) {
-    // Assign octave number, notes and positions to variables
-    const firstNoteName = firstNote[0];
-    const firstOctaveNumber = parseInt(firstNote[1]);
-    const lastNoteName = lastNote[0];
-    const lastOctaveNumber = parseInt(lastNote[1]);
-    const firstNotePosition = this.naturalNotes.indexOf(firstNoteName);
-    const lastNotePosition = this.naturalNotes.indexOf(lastNoteName);
-    const notes = [];
-
-    for (
-      let octaveNumber = firstOctaveNumber;
-      octaveNumber <= lastOctaveNumber;
-      octaveNumber++
-    ) {
-      // Handle first octave
-      if (octaveNumber === firstOctaveNumber) {
-        this.naturalNotes.slice(firstNotePosition).forEach((noteName) => {
-          notes.push(noteName + octaveNumber);
-        });
-
-        // Handle last octave
-      } else if (octaveNumber === lastOctaveNumber) {
-        this.naturalNotes.slice(0, lastNotePosition + 1).forEach((noteName) => {
-          notes.push(noteName + octaveNumber);
-        });
-      } else {
-        this.naturalNotes.forEach((noteName) => {
-          notes.push(noteName + octaveNumber);
-        });
-      }
-    }
-    return notes;
-  }
-
-  createMainSvg() {
-    const returnSvg = utils.createSVGElement("svg");
-    utils.setAttributes(returnSvg, {
-      width: "100%",
-      version: "1.1",
-      xmlns: "http://www.w3.org/2000/svg",
-      "xmlns:xlink": "http://www.w3.org/1999/xlink",
-      viewBox: `0 0 ${this.pianoWidth} ${this.pianoHeight}`,
-    });
-    return returnSvg;
-  }
-
-  displayNotes(notes) {
+  function displayNotes(notes) {
     const pianoKeys = document.querySelectorAll(".key");
     utils.removeClassFromNodeCollection(pianoKeys, "show");
     notes.forEach((noteName) => {
@@ -293,19 +246,21 @@ export class Piano extends React.Component {
       });
     });
   }
-  render() {
-    return (
-      <div className="main_piano_div">
-        <div>
-          {" "}
-          {this.createMainSvg()}
-          {this.addWhiteKeys}
-          {this.addBlackKeys}
-        </div>
-        <div> {this.displayNotes(notes)}</div>
-      </div>
-    );
-  }
-}
 
-export default Piano;
+  useEffect(() => {
+    pianoElem.current.innerHTML = "Hallo2";
+    svg = createMainSvg();
+    addWhiteKeys();
+    addBlackKeys();
+    createOctave();
+    // displayNotes();
+    pianoElem.current.appendChild(svg);
+  });
+
+  return (
+    <div>
+      <h1>Hallo</h1>
+      <div ref={pianoElem}></div>
+    </div>
+  );
+};

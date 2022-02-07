@@ -1,0 +1,55 @@
+import React from "react";
+import "../styles/piano.css";
+import { RecordingManager } from "./RecordingManager";
+
+
+export class Piano extends React.Component {
+  // TODO: create display methods
+  constructor(]) {
+    super();
+
+    //this.recordingManager = new RecordingManager();
+
+ 
+
+    //this.keydown();
+
+    
+  }
+
+  // keydown() {
+  //   document.addEventListener("keydown", (e) => {
+  //     document.addEventListener("keydown", (e) => {
+  //       if (!e.repeat) console.log(`Key "${e.key}" pressed  [event: keydown]`);
+  //       else console.log(`Key "${e.key}" repeating  [event: keydown]`);
+  //     });
+  //     document.addEventListener("beforeinput", (e) => {
+  //       console.log.log(
+  //         `Key "${e.data}" about to be input  [event: beforeinput]`
+  //       );
+  //     });
+  //     document.addEventListener("input", (e) => {
+  //       console.log(`Key "${e.data}" input  [event: input]`);
+  //     });
+  //     document.addEventListener("keyup", (e) => {
+  //       console.log(`Key "${e.key}" released  [event: keyup]`);
+  //     });
+  //     switch (e.key) {
+  //       case "c":
+  //         console.log("C");
+  //     }
+  //   });
+  // }
+
+  
+
+  
+
+ 
+
+  
+
+  
+
+
+export default Piano;
