@@ -20,7 +20,7 @@ export const MusicPlayer = () => {
       <audio src="/music/hey.mp3" id="audio"></audio>
 
       <div class="img-container">
-        <img src="images/prp.jpg" alt="music-cover" id="cover" />
+        <img src="images/musicplayer/prp.jpg" alt="music-cover" id="cover" />
       </div>
       <div class="navigation">
         <button id="prev" class="action-btn">
