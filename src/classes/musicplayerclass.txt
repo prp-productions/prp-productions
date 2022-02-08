@@ -32,7 +32,7 @@ export class MusicPlayer {
 
     this.audio.addEventListener("timeupdate", this.durTime);
 
-    this.songs = ["hey", "prp", "beat01"];
+    
     this.songIndex = 2;
     this.loadSong(this.songs[this.songIndex]);
   }

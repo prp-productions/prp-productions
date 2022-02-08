@@ -1,8 +1,10 @@
+import {MusicPlayer} from "../components/MusicPlayer";
+import "../styles/musicPlayer.css";
+
+
 export const PageMusicPlayer = () => {
   return (
-    <div>
-      <h1>Musicplayer</h1>
-    </div>
-  );
+  <MusicPlayer/>
+  )
 };
 
