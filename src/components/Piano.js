@@ -2,8 +2,12 @@ import { useRef, useEffect } from "react";
 import * as utils from "../utils/General";
 import { getNoteFromNoteName } from "../utils/ChannelKeyMap.js";
 import { AudioManager } from "../classes/AudioManager.js";
-import '../styles/piano.css'
+import { MidiKeyboard } from "../classes/MidiKeyboard";
+// import { RecordingManager } from '../classes/RecordingManager';
+import "../styles/piano.css";
+
 const audioManager = new AudioManager();
+// const recordingManager = new RecordingManager();
 
 export const Piano = () => {
   let svg = null;
@@ -13,8 +17,8 @@ export const Piano = () => {
   const pianoHeight = 400;
   const pianoWidth = allNaturalNotes.length * whiteKeyWidth;
   const pianoElem = useRef(null);
-  const ts1 = 0;
-  const ts2 = 0;
+  let ts1 = 0;
+  let ts2 = 0;
   const naturalNotesSharps = ["C", "D", "F", "G", "A"];
   const naturalNotesFlats = ["D", "E", "G", "A", "B"];
 
@@ -96,18 +100,20 @@ export const Piano = () => {
         const playDuration = 200;
 
         const waitDuration = 0;
-        this.recordingManager.overwriteDurationOfLastNoteIfIsNecessary(
-          duration
-        );
-        console.log(note, velocity, playDuration, waitDuration);
-        this.recordingManager.recordIfNecessary({
-          note,
-          velocity,
-          playDuration,
-          waitDuration,
-        });
+
+        //   recordingManager.overwriteDurationOfLastNoteIfIsNecessary(
+        //     duration
+        //   );
+        //   console.log(note, velocity, playDuration, waitDuration);
+        //   recordingManager.recordIfNecessary({
+        //     note,
+        //     velocity,
+        //     playDuration,
+        //     waitDuration,
+        //   });
       });
       // TODO: DURATION!!! =>alternative setTimeout
+
       const text = utils.createSVGElement("text");
       utils.addTextContent(text, noteName);
       utils.setAttributes(whiteKeyTextGroup, { width: whiteKeyWidth });
@@ -155,7 +161,7 @@ export const Piano = () => {
           console.log(blackKey);
         }
         audioManager.noteOffWithKeyPress(note);
-        this.recordingManager.recordIfNecessary({ note, velocity });
+        // recordingManager.recordIfNecessary({ note, velocity });
       });
 
       const flatNameText = utils.createSVGElement("text");
@@ -214,23 +220,29 @@ export const Piano = () => {
     return key;
   }
 
-  function createOctave(octaveNumber) {
-    //! WTF is octaveWidth?
-    const octaveWidth = 100;
-    const octave = utils.createSVGElement("g");
-    octave.classList.add("octave");
+  // function createOctave(octaveNumber) {
+  //   //! WTF is octaveWidth?
+  //   console.log(octaveNumber);
+  //   const octaveWidth = 100;
+  //   const octave = utils.createSVGElement("g");
+  //   octave.classList.add("octave");
 
-    octave.setAttribute(
-      "transform",
+  //   octave.setAttribute(
+  //     "transform",
 
-      `translate(${octaveNumber * octaveWidth}, 0)`
-    );
-    return octave;
+  //     `translate(${octaveNumber * octaveWidth}, 0)`
+  //   );
+  //   return octave;
+  // }
+
+  function hideNotes() {
+    const pianoKeys = pianoElem.current.querySelectorAll(".key");
+    utils.removeClassFromNodeCollection(pianoKeys, "show");
   }
 
   function displayNotes(notes) {
-    const pianoKeys = document.querySelectorAll(".key");
-    utils.removeClassFromNodeCollection(pianoKeys, "show");
+    // const pianoKeys = document.querySelectorAll(".key");
+    const pianoKeys = pianoElem.current.querySelectorAll(".key");
     notes.forEach((noteName) => {
       pianoKeys.forEach((key) => {
         const naturalName = key.dataset.noteName;
@@ -248,11 +260,12 @@ export const Piano = () => {
   }
 
   useEffect(() => {
+    new MidiKeyboard(displayNotes, hideNotes);
     pianoElem.current.innerHTML = "Hallo2";
     svg = createMainSvg();
     addWhiteKeys();
     addBlackKeys();
-    createOctave();
+    // createOctave();
     // displayNotes();
     pianoElem.current.appendChild(svg);
   });
