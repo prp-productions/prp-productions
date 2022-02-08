@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 export const MusicPlayer = () => {
   const [songs, setSongs] = useState(["hey", "prp", "beat01"]);
@@ -12,9 +12,11 @@ export const MusicPlayer = () => {
   const handlePlay = () => {
     console.log("play");
   };
+  const audioElem = useRef(null);
   return (
     <div className="page_musicplayer">
       <h1>Musicplayer</h1>
+      <div ref={audioElem}></div>
       {/* TODO: styles in sass */}
 
       <div className="music-container" id="music-container">
@@ -47,5 +49,8 @@ export const MusicPlayer = () => {
         </div>
       </div>
     </div>
+
+
+
   );
 };
