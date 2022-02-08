@@ -1,18 +1,27 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export const MusicPlayer = () => {
   const [songs, setSongs] = useState(["hey", "prp", "beat01"]);
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
+  
+  const audioElem = useRef(null);
+
   const handleNext = () => {
     console.log("next");
   };
+
   const handlePrev = () => {
     console.log("prev");
   };
+
   const handlePlay = () => {
     console.log("play");
   };
-  const audioElem = useRef(null);
+
+  useEffect(() => {
+      audioElem.current.innerHTML = 'gemma Bia trinkle'
+  })
+
   return (
     <div className="page_musicplayer">
       <h1>Musicplayer</h1>
