@@ -1,42 +1,51 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 
 export const MusicPlayer = () => {
   const [songs, setSongs] = useState(["hey", "prp", "beat01"]);
-  const [currentSongIndex, setCurrentSongIndex] = useState(0);
-  
-  const audioElem = useRef(null);
+  const [currentSongIndex, setCurrentSongIndex] = useState(1);
 
   const handleNext = () => {
-    console.log("next");
+    let _currentSongIndex = currentSongIndex + 1;
+    if (_currentSongIndex > songs.length - 1) {
+      _currentSongIndex = 0;
+    }
+    setCurrentSongIndex(_currentSongIndex);
   };
 
   const handlePrev = () => {
-    console.log("prev");
+    let _currentSongIndex = currentSongIndex - 1;
+    if (_currentSongIndex < 0) {
+      _currentSongIndex = songs.length - 1;
+    }
+    setCurrentSongIndex(_currentSongIndex);
+    
   };
 
   const handlePlay = () => {
-    console.log("play");
+    audioElem.current.play();
   };
 
-  useEffect(() => {
-      audioElem.current.innerHTML = 'gemma Bia trinkle'
-  })
+  const audioElem = useRef(null);
 
   return (
     <div className="page_musicplayer">
       <h1>Musicplayer</h1>
-      <div ref={audioElem}></div>
+      <h4 id="title"> Current Song: {songs[currentSongIndex]}</h4>
+
       {/* TODO: styles in sass */}
 
       <div className="music-container" id="music-container">
         <div className="music-info">
-          <h4 id="title"></h4>
           <div className="progress-container" id="progress-container">
             <div className="progress" id="progress"></div>
           </div>
         </div>
 
-        <audio src="/music/hey.mp3" id="audio"></audio>
+        <audio
+          src={`mediaDirectory/music/${songs[currentSongIndex]}.mp3`}
+          id="audio"
+          ref={audioElem}
+        ></audio>
 
         <div className="img-container">
           <img src="images/musicplayer/prp.jpg" alt="music-cover" id="cover" />
@@ -58,8 +67,5 @@ export const MusicPlayer = () => {
         </div>
       </div>
     </div>
-
-
-
   );
 };
