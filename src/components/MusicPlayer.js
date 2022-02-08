@@ -17,8 +17,7 @@ export const MusicPlayer = () => {
     if (_currentSongIndex < 0) {
       _currentSongIndex = songs.length - 1;
     }
-    setCurrentSongIndex(_currentSongIndex);
-    
+    setCurrentSongIndex(_currentSongIndex)
   };
 
   const handlePlay = () => {
