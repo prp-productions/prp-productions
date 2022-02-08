@@ -1,13 +1,16 @@
-/* .nav {
+.nav {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   position: absolute;
   top: 0;
   right: 0;
   left: 0;
+  padding: 20px 200px 200px 200px;
+  font-size: xx-large;
 }
 
 .nav li {
   padding: 5px;
   margin: 10px;
-} */
+  font-family: "Raleway", sans-serif;
+}

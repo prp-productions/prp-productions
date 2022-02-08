@@ -7,7 +7,6 @@ body {
 }
 
 .drumkit {
-  border: 1px solid red;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -16,7 +15,7 @@ body {
 }
 
 .playing {
-  background: radial-gradient(#fa5f4a, #539df7) !important;
+  background: radial-gradient(#fa5f4a, #359bda) !important;
 }
 
 .pad {
@@ -25,7 +24,7 @@ body {
   align-items: center;
   margin: 10px;
   flex: 1 0 calc(33.333% - 20px);
-  background: radial-gradient(#fa5f4a, #1a75e4);
+  background: radial-gradient(#db222a, #359bda);
   border-radius: 10px;
 }
 
