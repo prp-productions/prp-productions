@@ -9,6 +9,9 @@ export const MusicPlayer = () => {
   const handlePrev = () => {
     console.log("prev");
   };
+  const handlePlay = () => {
+    console.log("play");
+  };
   return (
     <div className="page_musicplayer">
       <h1>Musicplayer</h1>
@@ -31,7 +34,11 @@ export const MusicPlayer = () => {
           <button id="prev" onClick={handlePrev} className="action-btn">
             <i className="fas fa-backward"></i>
           </button>
-          <button id="play" className="action-btn action-btn-big">
+          <button
+            id="play"
+            onClick={handlePlay}
+            className="action-btn action-btn-big"
+          >
             <i className="fas fa-play"></i>
           </button>
           <button id="next" onClick={handleNext} className="action-btn">
