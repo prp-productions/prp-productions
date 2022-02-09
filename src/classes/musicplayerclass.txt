@@ -44,17 +44,7 @@ export class MusicPlayer {
   }
 
   playSong() {
-    this.musicContainer.classList.add("play");
-    this.playBtn.querySelector("i.fas").classList.remove("fa-play");
-    this.playBtn.querySelector("i.fas").classList.add("fa-pause");
-
-    audio.play();
-  }
-
-  pauseSong() {
-    this.musicContainer.classList.remove("play");
-    this.playBtn.querySelector("i.fas").classList.add("fa-play");
-    this.playBtn.querySelector("i.fas").classList.remove("fa-pause");
+    
 
     audio.pause();
   }
