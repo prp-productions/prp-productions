@@ -29,7 +29,6 @@ export const MusicPlayer = () => {
   return (
     <div className="page_musicplayer">
       <h1>Musicplayer</h1>
-      <h4 id="title"> Current Song: {songs[currentSongIndex]}</h4>
 
       {/* TODO: styles in sass */}
 
@@ -50,19 +49,20 @@ export const MusicPlayer = () => {
           <img src="images/musicplayer/prp.jpg" alt="music-cover" id="cover" />
         </div>
         <div className="navigation">
-          <button id="prev" onClick={handlePrev} className="action-btn">
-            <i className="fas fa-backward"></i>
-          </button>
-          <button
-            id="play"
-            onClick={handlePlay}
-            className="action-btn action-btn-big"
-          >
-            <i className="fas fa-play"></i>
-          </button>
-          <button id="next" onClick={handleNext} className="action-btn">
-            <i className="fas fa-forward"></i>
-          </button>
+        <button id="prev" onClick={handlePrev} className="action-btn">
+        <i className="fas fa-backward"></i>
+        </button>
+        <button
+        id="play"
+        onClick={handlePlay}
+        className="action-btn action-btn-big"
+        >
+        <i className="fas fa-play"></i>
+        </button>
+        <button id="next" onClick={handleNext} className="action-btn">
+        <i className="fas fa-forward"></i>
+        </button>
+        <h4 id="title"> Current Song: {songs[currentSongIndex]}</h4>
         </div>
       </div>
     </div>

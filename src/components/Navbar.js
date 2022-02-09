@@ -11,7 +11,7 @@ export function Navbar() {
             className="nav-link"
             to="/"
           >
-            <h1>PRP-Productions</h1>
+            PRP-Productions
           </NavLink>
         </li>
         <li>
