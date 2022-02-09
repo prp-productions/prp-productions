@@ -17,6 +17,7 @@ export const MusicPlayer = () => {
       _currentSongIndex = 0;
     }
     setCurrentSongIndex(_currentSongIndex);
+    setIsPlaying(false)
   };
 
   const handlePrev = () => {
@@ -25,6 +26,7 @@ export const MusicPlayer = () => {
       _currentSongIndex = songs.length - 1;
     }
     setCurrentSongIndex(_currentSongIndex);
+    setIsPlaying(false)
   };
 
   const handlePlay = () => {
