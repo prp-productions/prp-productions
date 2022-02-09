@@ -43,11 +43,7 @@ export class MusicPlayer {
     cover.src = `images/prp.jpg`;
   }
 
-  playSong() {
-    
 
-    audio.pause();
-  }
 
   prevSong = () => {
     this.songIndex--;

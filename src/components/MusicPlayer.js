@@ -1,9 +1,15 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export const MusicPlayer = () => {
   const [songs, setSongs] = useState(["hey", "prp", "beat01"]);
   const [currentSongIndex, setCurrentSongIndex] = useState(1);
   const [isPlaying, setIsPlaying] = useState(false);
+
+  useEffect(() => {
+    audioElem.current.addEventListener("ended", () => {
+      setIsPlaying(false)
+    });
+  }, []);
 
   const handleNext = () => {
     let _currentSongIndex = currentSongIndex + 1;
