@@ -3,11 +3,11 @@ import * as utils from "../utils/General";
 import { getNoteFromNoteName } from "../utils/ChannelKeyMap.js";
 import { AudioManager } from "../classes/AudioManager.js";
 import { MidiKeyboard } from "../classes/MidiKeyboard";
-import { RecordingManager } from "../classes/RecordingManager";
+import { RecordingManager, PlayRecording } from "../classes/RecordingManager";
 import "../styles/piano.css";
 
 const audioManager = new AudioManager();
-// const recordingManager = new RecordingManager();
+//const recordingManager = new RecordingManager();
 
 export const Piano = () => {
   let svg = null;
@@ -272,6 +272,11 @@ export const Piano = () => {
 
   return (
     <div>
+      {/* <button className="startStopRecord">Start Stop</button>
+      <button className="playRecording" onClick={() => PlayRecording()}>
+        Play
+      </button> */}
+      <RecordingManager />
       <div ref={pianoElem}></div>
     </div>
   );
