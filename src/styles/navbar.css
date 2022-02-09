@@ -1,4 +1,4 @@
-/* .nav {
+.nav {
   display: flex;
   justify-content: center;
   position: absolute;
@@ -10,4 +10,24 @@
 .nav li {
   padding: 5px;
   margin: 10px;
-} */
+} 
+
+@media only screen and (max-width: 300px) {
+  .nav li {
+    margin: 0;
+  }
+}
+@media only screen and (max-width: 250px) {
+  .nav li {
+    font-size: 14px;
+  }
+}
+.nav li .nav-link {
+  color: var(--main-light-2);
+  text-decoration: none;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px var(--main-dark);
+}
+.nav li .nav-link:hover {
+  color: var(--main-link);
+}

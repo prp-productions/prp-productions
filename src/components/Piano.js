@@ -261,7 +261,7 @@ export const Piano = () => {
 
   useEffect(() => {
     new MidiKeyboard(displayNotes, hideNotes);
-    pianoElem.current.innerHTML = "Hallo2";
+    pianoElem.current.innerHTML = "";
     svg = createMainSvg();
     addWhiteKeys();
     addBlackKeys();
@@ -272,7 +272,6 @@ export const Piano = () => {
 
   return (
     <div>
-      <h1>Hallo</h1>
       <div ref={pianoElem}></div>
     </div>
   );

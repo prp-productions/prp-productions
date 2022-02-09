@@ -4,6 +4,7 @@ import "../styles/home.css";
 export const PageHome = () => {
   return (
     <div className="home-component">
+    <h1>PRP-Productions</h1>
       <h2>
         Welcome, this is <Link to="/PageMidiKeyboard">PRP-Productions</Link>. We
         are building a platform on which users can learn about music by creating
