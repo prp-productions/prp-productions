@@ -62,7 +62,9 @@ export const MusicPlayer = () => {
         <button id="next" onClick={handleNext} className="action-btn">
         <i className="fas fa-forward"></i>
         </button>
+
         <h4 id="title"> Current Song: {songs[currentSongIndex]}</h4>
+        
         </div>
       </div>
     </div>
