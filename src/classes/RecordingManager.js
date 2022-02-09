@@ -7,10 +7,9 @@ export const RecordingManager = () => {
   const [isRecording, setIsRecording] = useState(false);
   const [waveform, setWaveform] = useState("sine");
   const [recordingArray, setRecordingArray] = useState([]);
-
-  //? this.recordButtonElem = document.querySelector(".recordButton");
-
   const [recordingIsPlaying, setRecordingIsPlaying] = useState(false);
+  const recordButtonElem = useRef(null);
+  const playButtonElem = useRef(null);
 
   let changeColorRecordMode = 0;
 
@@ -44,33 +43,15 @@ export const RecordingManager = () => {
           );
         }, (midiNote.playDuration + midiNote.waitDuration) * index);
       });
+      setRecordingIsPlaying(true);
     }
   };
 
-  // this.playButtonElem.addEventListener("click", () => {
-  //     console.log(this.isRecording);
-  //     if (this.isRecording) {
-  //       console.log("ERROR");
-  //     } else {
-  //       console.log("recordingArray", this.recordingArray);
-  //       this.recordingArray.forEach((midiNote, index) => {
-  //         setTimeout(() => {
-  //           audioManager.noteOn(midiNote.note, midiNote.velocity);
-  //           audioManager.noteOffWithDuration(
-  //             midiNote.note,
-  //             midiNote.playDuration
-  //           ); // laenge der note
-  //         }, (midiNote.playDuration + midiNote.waitDuration) * index); // abstand vom anfang der ersten Note bis zur naechsten Note
-  //       });
-  //     }
-  //   });
-  // }
   const overwriteDurationOfLastNoteIfIsNecessary = () => {
     if (recordingArray.length > 0) {
       recordingArray[recordingArray.length - 1].waitDuration = duration;
     }
   };
-  const recordButtonElem = useRef(null);
 
   return (
     <div className="recording-manager">

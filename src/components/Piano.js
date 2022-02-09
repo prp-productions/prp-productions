@@ -3,7 +3,7 @@ import * as utils from "../utils/General";
 import { getNoteFromNoteName } from "../utils/ChannelKeyMap.js";
 import { AudioManager } from "../classes/AudioManager.js";
 import { MidiKeyboard } from "../classes/MidiKeyboard";
-// import { RecordingManager } from '../classes/RecordingManager';
+import { RecordingManager } from "../classes/RecordingManager";
 import "../styles/piano.css";
 
 const audioManager = new AudioManager();
