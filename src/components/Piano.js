@@ -3,11 +3,11 @@ import * as utils from "../utils/General";
 import { getNoteFromNoteName } from "../utils/ChannelKeyMap.js";
 import { AudioManager } from "../classes/AudioManager.js";
 import { MidiKeyboard } from "../classes/MidiKeyboard";
-import { RecordingManager, PlayRecording } from "../classes/RecordingManager";
+import { RecordingManager, PlayRecording } from "../components/RecordingManager";
 import "../styles/piano.css";
 
 const audioManager = new AudioManager();
-//const recordingManager = new RecordingManager();
+
 
 export const Piano = () => {
   let svg = null;
