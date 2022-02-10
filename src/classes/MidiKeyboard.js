@@ -1,6 +1,6 @@
 import { AudioManager } from "./AudioManager.js";
 import { channelKeyMap } from "../utils/ChannelKeyMap.js";
-import { Piano } from "../components/Piano.js";
+// import { Piano } from "../components/Piano.js";
 
 // const piano = new Piano();
 
@@ -31,6 +31,7 @@ export class MidiKeyboard {
     const command = input.data[0];
     const note = input.data[1];
     const velocity = input.data[2];
+    
 
     switch (command) {
       case 144: //noteOn
