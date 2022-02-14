@@ -36,6 +36,7 @@ export class AudioManager {
     console.log(osc.frequency.value);
     this.oscillators[note.toString()] = osc;
     osc.start();
+    this.recordNote({ note, velocity });
   }
 
   noteOff(note) {

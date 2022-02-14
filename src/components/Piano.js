@@ -9,6 +9,7 @@ import "../styles/piano.css";
 const audioManager = new AudioManager();
 
 export const Piano = () => {
+  const [waveform, setWaveform] = useState("sine");
   let svg = null;
   const range = ["C2", "C7"];
   const allNaturalNotes = getAllNaturalNotes(range);
@@ -21,14 +22,12 @@ export const Piano = () => {
   const naturalNotesSharps = ["C", "D", "F", "G", "A"];
   const naturalNotesFlats = ["D", "E", "G", "A", "B"];
 
-  const waveformOptions = [
-    { value: "sine", label: "Sine" },
-    { value: "triangle", label: "Triangle" },
-    { value: "sawtooth", label: "Sawtooth" },
-    { value: "square", label: "Square" },
-  ];
-
-  const [waveform, setWaveform] = useState("sine");
+  // const waveformOptions = [
+  //   { value: "sine", label: "Sine" },
+  //   { value: "triangle", label: "Triangle" },
+  //   { value: "sawtooth", label: "Sawtooth" },
+  //   { value: "square", label: "Square" },
+  // ];
 
   const handleChooseWaveform = (waveform) => {
     setWaveform(waveform);
@@ -298,6 +297,7 @@ export const Piano = () => {
           className="dropdown-item"
           value="sine"
           onClick={() => handleChooseWaveform("sine")}
+          on
         >
           sine
         </option>

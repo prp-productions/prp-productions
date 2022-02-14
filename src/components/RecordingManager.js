@@ -1,6 +1,6 @@
 import { AudioManager } from "../classes/AudioManager.js";
 import { useState } from "react";
-
+import "../styles/recordingManager.scss";
 //const audioManager = new AudioManager();
 
 export const RecordingManager = ({ audioManager }) => {
@@ -43,10 +43,10 @@ export const RecordingManager = ({ audioManager }) => {
   //   });
   // }
 
-  // recordIfNecessary(midiNote) {
+  // const recordIfNecessary = (midiNote) => {
   //   if (this.isRecording) this.recordingArray.push(midiNote);
   //   console.log(this.recordingArray);
-  // }
+  // };
 
   // overwriteDurationOfLastNoteIfIsNecessary(duration) {
   //   if (this.recordingArray.length > 0) {
@@ -56,16 +56,30 @@ export const RecordingManager = ({ audioManager }) => {
   // }
   const handleRecordButton = () => {
     setIsRecording(!isRecording);
+
+    console.log(recordingArray);
   };
 
-  const recordNote = (note) => {
+  const recordMidiNote = (midiNote) => {
     if (isRecording) {
-      recordingArray.push(note);
+      recordingArray.push(midiNote);
       setRecordingArray([...recordingArray]);
     }
   };
 
-  audioManager.injectRecordNote(recordNote);
+  audioManager.injectRecordNote(recordMidiNote);
 
-  return null;
+  return (
+    <div className="component_recordingManager">
+      <button
+        className={`recordButton${isRecording ? " recording" : ""}`}
+        onClick={handleRecordButton}
+      >
+        <span>Record</span>
+      </button>
+      <div className="recordedNotes">
+        {recordingArray.map((note) => note).join(", ")}
+      </div>
+    </div>
+  );
 };
