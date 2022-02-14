@@ -1,0 +1,9 @@
+Css styles - 3 styles?
+Documentation
+PowerPoint Presentation
+    -mockups unfinished features
+local storage.  
+waveform button on piano
+Recording Manager Aufnehmen Funktionalitaet einbauen
+Musikplayer kann .prp dateien abspielen.
+

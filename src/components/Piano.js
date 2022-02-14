@@ -291,12 +291,12 @@ export const Piano = () => {
     <div className="component_piano">
       <h1>Piano</h1>
       <RecordingManager audioManager={audioManager} />
-      WaveForm:
+      {/* WaveForm:
       <select className="dropdown-menu" id="waveforms">
         <option
           className="dropdown-item"
           value="sine"
-          onClick={() => handleChooseWaveform("sine")}
+          onChange={() => handleChooseWaveform("sine")}
           on
         >
           sine
@@ -304,18 +304,18 @@ export const Piano = () => {
         <option
           className="dropdown-item"
           value="square"
-          onClick={() => handleChooseWaveform(this.option.value)}
+          onChange={() => handleChooseWaveform(this.option.value)}
         >
           triangle
         </option>
         <option
           className="dropdown-item"
           value="triangle"
-          onClick={() => handleChooseWaveform("square")}
+          onChange={() => handleChooseWaveform(this.option.value)}
         >
           square
         </option>
-      </select>
+      </select> */}
       <div ref={pianoElem}></div>
     </div>
   );
