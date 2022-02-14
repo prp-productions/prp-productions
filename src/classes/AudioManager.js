@@ -62,7 +62,7 @@ export class AudioManager {
     setTimeout(() => {
       osc.stop();
       osc.disconnect();
-    }, 200);
+    }, 200); // length of note
 
     delete this.oscillators[note.toString()];
   }

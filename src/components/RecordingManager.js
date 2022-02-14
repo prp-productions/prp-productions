@@ -51,11 +51,12 @@ export const RecordingManager = ({ audioManager }) => {
       recordingArray.forEach((midiNote, index) => {
         setTimeout(() => {
           audioManager.noteOn(midiNote.note, midiNote.velocity);
-          audioManager.noteOffWithDuration(
-            midiNote.note,
-            midiNote.playDuration
-          );
-        }, 300); // abstand vom anfang der ersten Note bis zur naechsten Note (midiNote.playDuration + midiNote.waitDuration) * index)
+          // audioManager.noteOffWithDuration(
+          //   midiNote.note,
+          //   midiNote.playDuration
+          // );
+          audioManager.noteOffWithKeyPress(midiNote.note);
+        }, 400 * index); // abstand vom anfang der ersten Note bis zur naechsten Note (midiNote.playDuration + midiNote.waitDuration) * index)
       });
     }
   };
