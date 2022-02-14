@@ -43,6 +43,22 @@ export const RecordingManager = ({ audioManager }) => {
   //   });
   // }
 
+  const handlePlayButton = () => {
+    if (isRecording) {
+      console.log("ERROR currently recording");
+    } else {
+      console.log("recordingArray", recordingArray);
+      recordingArray.forEach((midiNote, index) => {
+        setTimeout(() => {
+          audioManager.noteOn(midiNote.note, midiNote.velocity);
+          audioManager.noteOffWithDuration(
+            midiNote.note,
+            midiNote.playDuration
+          );
+        }, 300); // abstand vom anfang der ersten Note bis zur naechsten Note (midiNote.playDuration + midiNote.waitDuration) * index)
+      });
+    }
+  };
   // const recordIfNecessary = (midiNote) => {
   //   if (this.isRecording) this.recordingArray.push(midiNote);
   //   console.log(this.recordingArray);
@@ -77,6 +93,10 @@ export const RecordingManager = ({ audioManager }) => {
       >
         <span>Record</span>
       </button>
+      <button className="playButton" onClick={handlePlayButton}>
+        Play
+      </button>
+
       <div className="recordedNotes">
         {recordingArray.map((note) => note).join(", ")}
       </div>
