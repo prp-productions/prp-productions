@@ -8,7 +8,7 @@ const audioManager = new AudioManager();
 
 export class MidiKeyboard {
   constructor(displayNotes, hideNotes) {
-    console.log(displayNotes);
+    //console.log(displayNotes);
     this.displayNotes = displayNotes;
     this.hideNotes = hideNotes;
     if (navigator.requestMIDIAccess) {

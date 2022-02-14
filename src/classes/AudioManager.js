@@ -6,6 +6,10 @@ export class AudioManager {
     this.oscillators = {};
   }
 
+  injectRecordNote(recordNote) {
+    this.recordNote = recordNote;
+  }
+
   midiToFrequency(number) {
     const a = 440;
     return (a / 32) * 2 ** ((number - 9) / 12);
@@ -19,7 +23,7 @@ export class AudioManager {
     // const selectElement = document.querySelector("#waveform option:checked"); // TODO: put into settings manager
 
     const osc = this.ctx.createOscillator();
-    osc.type = 'sine'; //TODO: create pulldown
+    osc.type = "sine"; //TODO: create pulldown
     osc.frequency.value = this.midiToFrequency(note);
     velocityGain.gain.value = velocityGainAmount;
 
