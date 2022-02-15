@@ -6,7 +6,7 @@ export const PageHome = () => {
     <div className="home-component">
     <h1>PRP-Productions</h1>
       <h2>
-        Welcome, this is <Link to="/PageMidiKeyboard">PRP-Productions</Link>. We
+        Welcome, this is <Link to="">PRP-Productions</Link>. We
         are building a platform on which users can learn about music by creating
         their own compositions. The app will support learning, writing,
         recording, and file sharing with other users.
