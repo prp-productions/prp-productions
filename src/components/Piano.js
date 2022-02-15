@@ -9,9 +9,11 @@ import "../styles/piano.css";
 const audioManager = new AudioManager();
 
 export const Piano = () => {
-  const [waveform, setWaveform] = useState("sine");
+  const [waveform, setWaveform] = useState("square");
+  const [range, setRange] = useState(["C1", "C7"]);
+  // const range = ["C1", "C4"];
+  // const range = ["C4", "C6"];
   let svg = null;
-  const range = ["C2", "C7"];
   const allNaturalNotes = getAllNaturalNotes(range);
   const whiteKeyWidth = 80;
   const pianoHeight = 400;
@@ -291,6 +293,12 @@ export const Piano = () => {
     <div className="component_piano">
       <h1>Piano</h1>
       <RecordingManager audioManager={audioManager} />
+
+      <button onClick={() => setRange(["C1", "C4"])}>C1 - C4</button>
+      <button onClick={() => setRange(["C4", "C7"])}>C4 - C7</button>
+  <button onClick={() => setRange(["C1", "C7"])}>C1 - C7</button>
+
+
       {/* WaveForm:
       <select className="dropdown-menu" id="waveforms">
         <option
