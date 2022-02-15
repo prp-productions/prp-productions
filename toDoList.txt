@@ -1,0 +1,13 @@
+Css styles 
+    - 3 styles?
+    - buttons
+    - vertical keyboard for smartphone
+Documentation
+PowerPoint Presentation
+    -mockups unfinished features
+local storage.  
+waveform button on piano
+Recording Manager Aufnehmen Funktionalitaet einbauen
+Musikplayer kann .prp dateien abspielen.
+
+Clap mp3 
