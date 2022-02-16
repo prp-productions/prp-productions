@@ -19,12 +19,12 @@ export const MidiKeyboard = ({ displayNotes, hideNotes, audioManager }) => {
                   //TODO: show notes on browser Keyboard //
                   const stringNote = channelKeyMap[note.toString()];
                   if (stringNote) displayNotes([stringNote]);
-                  console.log(
-                    "Note:",
-                    note,
-                    "Velocity:" + velocity,
-                    "(Anschlagdynamic):"
-                  );
+                  // console.log(
+                  //   "Note:",
+                  //   note,
+                  //   "Velocity:" + velocity,
+                  //   "(Anschlagdynamic):"
+                  // );
                 } else {
                   audioManager.noteOff(note);
                 }

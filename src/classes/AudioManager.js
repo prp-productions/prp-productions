@@ -16,6 +16,7 @@ export class AudioManager {
   }
 
   noteOn(note, velocity) {
+    console.log('noteOn');
     const oscGain = this.ctx.createGain();
     oscGain.gain.value = 0.33;
     const velocityGainAmount = (1 / 127) * velocity;
@@ -39,7 +40,6 @@ export class AudioManager {
   }
 
   noteOff(note) {
-    console.log("ggggg", Object.entries(this.oscillators));
     if (Object.entries(this.oscillators).length > 0) {
       const osc = this.oscillators[note.toString()];
       const oscGain = osc.gain;
@@ -59,6 +59,7 @@ export class AudioManager {
     }
   }
   noteOffWithKeyPress(note) {
+    console.log('noteOff');
     if (Object.entries(this.oscillators).length > 0) {
       const osc = this.oscillators[note.toString()];
       setTimeout(() => {
