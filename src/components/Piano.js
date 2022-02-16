@@ -272,7 +272,6 @@ export const Piano = () => {
   }
 
   useEffect(() => {
-    new MidiKeyboard(displayNotes, hideNotes);
     pianoElem.current.innerHTML = "";
     svg = createMainSvg();
     addWhiteKeys();
@@ -285,17 +284,19 @@ export const Piano = () => {
   const handlePianoKeyPress = () => {
     audioManager.noteOn("C");
   };
-
+  
   console.log(waveform);
   return (
     <div className="component_piano">
       <h1>Piano</h1>
-      <RecordingManager audioManager={audioManager} />
+      <MidiKeyboard displayNotes={displayNotes} hideNotes={hideNotes} audioManager={audioManager} />
+       <RecordingManager audioManager={audioManager} />
+
       {/* WaveForm:
-      <select className="dropdown-menu" id="waveforms">
+        <select className="dropdown-menu" id="waveforms">
         <option
-          className="dropdown-item"
-          value="sine"
+        className="dropdown-item"
+        value="sine"
           onChange={() => handleChooseWaveform("sine")}
           on
         >
