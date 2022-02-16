@@ -33,38 +33,41 @@ export class AudioManager {
 
     osc.gain = oscGain;
 
-    console.log(osc.frequency.value);
     this.oscillators[note.toString()] = osc;
     osc.start();
     this.recordNote({ note, velocity });
   }
 
   noteOff(note) {
-    const osc = this.oscillators[note.toString()];
-    const oscGain = osc.gain;
+    console.log("ggggg", Object.entries(this.oscillators));
+    if (Object.entries(this.oscillators).length > 0) {
+      const osc = this.oscillators[note.toString()];
+      const oscGain = osc.gain;
 
-    //nobody knows whats going on here, but its works...
-    oscGain.gain.setValueAtTime(oscGain.gain.value, this.ctx.currentTime);
-    oscGain.gain.exponentialRampToValueAtTime(
-      0.001,
-      this.ctx.currentTime + 0.003
-    );
-    setTimeout(() => {
-      osc.stop();
-      osc.disconnect();
-    }, 20);
+      //nobody knows whats going on here, but its works...
+      oscGain.gain.setValueAtTime(oscGain.gain.value, this.ctx.currentTime);
+      oscGain.gain.exponentialRampToValueAtTime(
+        0.001,
+        this.ctx.currentTime + 0.003
+      );
+      setTimeout(() => {
+        osc.stop();
+        osc.disconnect();
+      }, 20);
 
-    delete this.oscillators[note.toString()];
+      delete this.oscillators[note.toString()];
+    }
   }
-
   noteOffWithKeyPress(note) {
-    const osc = this.oscillators[note.toString()];
-    setTimeout(() => {
-      osc.stop();
-      osc.disconnect();
-    }, 200); // length of note
+    if (Object.entries(this.oscillators).length > 0) {
+      const osc = this.oscillators[note.toString()];
+      setTimeout(() => {
+        osc.stop();
+        osc.disconnect();
+      }, 200); // length of note
 
-    delete this.oscillators[note.toString()];
+      delete this.oscillators[note.toString()];
+    }
   }
 
   noteOffWithDuration(note, ms) {
