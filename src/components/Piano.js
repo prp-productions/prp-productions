@@ -2,7 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import * as utils from "../utils/General";
 import { getNoteFromNoteName } from "../utils/ChannelKeyMap.js";
 import { AudioManager } from "../classes/AudioManager.js";
-import { MidiKeyboard } from "../classes/MidiKeyboard";
+import { MidiKeyboard } from "./MidiKeyboard";
 import { RecordingManager } from "../components/RecordingManager.js";
 import "../styles/piano.css";
 
@@ -298,7 +298,7 @@ export const Piano = () => {
 
       <button onClick={() => setRange(["C1", "C4"])}>C1 - C4</button>
       <button onClick={() => setRange(["C4", "C7"])}>C4 - C7</button>
-  <button onClick={() => setRange(["C1", "C7"])}>C1 - C7</button>
+      <button onClick={() => setRange(["C1", "C7"])}>C1 - C7</button>
 
       <button
         className="dropdown-item"

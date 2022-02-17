@@ -9,6 +9,9 @@
     box-shadow: 3px 3px 6px #d1d1d1, -3px -3px 6px #f5f5f5;
     transition: 1s;
   }
+  .recordedNotes {
+    color: white;
+  }
   button.recording:hover {
     box-shadow: inset 4px 4px 10px #5b5b5b, inset -4px -4px 2px #ffffff;
     color: var(--main-link);

@@ -1,47 +1,16 @@
 import { AudioManager } from "../classes/AudioManager.js";
 import { useState } from "react";
 import "../styles/recordingManager.scss";
-//const audioManager = new AudioManager();
+
+const _recordingArray = localStorage.getItem("recordingArray");
+console.log(_recordingArray);
 
 export const RecordingManager = ({ audioManager }) => {
   const [isRecording, setIsRecording] = useState(false);
   const [waveform, setWaveform] = useState("sine");
-  const [recordingArray, setRecordingArray] = useState([]);
-  // this.recordButtonElem = document.querySelector(".recordButton");
-  // this.playButtonElem = document.querySelector(".playRecorded");
-  // let changeColorRecordMode = 0;
-
-  // this.recordButtonElem.addEventListener("click", () => {
-  //   const colors = ["red", "white"];
-  //   this.recordButtonElem.style.backgroundColor =
-  //     colors[changeColorRecordMode];
-  //   this.recordButtonElem.style.color = "black";
-  //   changeColorRecordMode =
-  //     changeColorRecordMode >= colors.length - 1
-  //       ? 0
-  //       : changeColorRecordMode + 1;
-
-  //   this.isRecording = !this.isRecording;
-  // });
-
-  //   this.playButtonElem.addEventListener("click", () => {
-  //     console.log(this.isRecording);
-  //     if (this.isRecording) {
-  //       console.log("ERROR");
-  //     } else {
-  //       console.log("recordingArray", this.recordingArray);
-  //       this.recordingArray.forEach((midiNote, index) => {
-  //         setTimeout(() => {
-  //           audioManager.noteOn(midiNote.note, midiNote.velocity);
-  //           audioManager.noteOffWithDuration(
-  //             midiNote.note,
-  //             midiNote.playDuration
-  //           ); // laenge der note
-  //         }, (midiNote.playDuration + midiNote.waitDuration) * index); // abstand vom anfang der ersten Note bis zur naechsten Note
-  //       });
-  //     }
-  //   });
-  // }
+  const [recordingArray, setRecordingArray] = useState(
+    _recordingArray === null ? [] : JSON.parse(_recordingArray)
+  );
 
   const handlePlayButton = () => {
     if (isRecording) {
@@ -60,10 +29,6 @@ export const RecordingManager = ({ audioManager }) => {
       });
     }
   };
-  // const recordIfNecessary = (midiNote) => {
-  //   if (this.isRecording) this.recordingArray.push(midiNote);
-  //   console.log(this.recordingArray);
-  // };
 
   // overwriteDurationOfLastNoteIfIsNecessary(duration) {
   //   if (this.recordingArray.length > 0) {
@@ -80,6 +45,7 @@ export const RecordingManager = ({ audioManager }) => {
   const recordMidiNote = (midiNote) => {
     if (isRecording) {
       recordingArray.push(midiNote);
+      localStorage.setItem("recordingArray", JSON.stringify(recordingArray));
       setRecordingArray([...recordingArray]);
     }
   };
@@ -99,7 +65,7 @@ export const RecordingManager = ({ audioManager }) => {
       </button>
 
       <div className="recordedNotes">
-        {recordingArray.map((note) => note).join(", ")}
+        {recordingArray.map((note) => JSON.stringify(note)).join(", ")}
       </div>
     </div>
   );
