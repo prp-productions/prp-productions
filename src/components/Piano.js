@@ -31,7 +31,6 @@ export const Piano = () => {
 
   const handleChooseWaveform = (waveform) => {
     setWaveform(waveform);
-    console.log(waveform);
   };
 
   const createMainSvg = () => {
@@ -285,7 +284,7 @@ export const Piano = () => {
     audioManager.noteOn("C");
   };
 
-  console.log(waveform);
+  //console.log(waveform);
   return (
     <div className="component_piano">
       <h1>Piano</h1>
