@@ -284,39 +284,48 @@ export const Piano = () => {
   const handlePianoKeyPress = () => {
     audioManager.noteOn("C");
   };
-  
+
   console.log(waveform);
   return (
     <div className="component_piano">
       <h1>Piano</h1>
-      <MidiKeyboard displayNotes={displayNotes} hideNotes={hideNotes} audioManager={audioManager} />
-       <RecordingManager audioManager={audioManager} />
+      <MidiKeyboard
+        displayNotes={displayNotes}
+        hideNotes={hideNotes}
+        audioManager={audioManager}
+      />
+      <RecordingManager audioManager={audioManager} />
 
-      {/* WaveForm:
-        <select className="dropdown-menu" id="waveforms">
-        <option
+      <button
         className="dropdown-item"
         value="sine"
-          onChange={() => handleChooseWaveform("sine")}
-          on
-        >
-          sine
-        </option>
-        <option
-          className="dropdown-item"
-          value="square"
-          onChange={() => handleChooseWaveform(this.option.value)}
-        >
-          triangle
-        </option>
-        <option
-          className="dropdown-item"
-          value="triangle"
-          onChange={() => handleChooseWaveform(this.option.value)}
-        >
-          square
-        </option>
-      </select> */}
+        onClick={() => handleChooseWaveform("sine")}
+      >
+        sine
+      </button>
+      <button
+        className="dropdown-item"
+        value="square"
+        onClick={() => handleChooseWaveform("square")}
+      >
+        square
+      </button>
+      <button
+        className="dropdown-item"
+        value="triangle"
+        onClick={() => handleChooseWaveform("triangle")}
+      >
+        triangle
+      </button>
+      <button
+        className="dropdown-item"
+        value="sawtooth"
+        onClick={() => handleChooseWaveform("sawtooth")}
+      >
+        sawtooth
+      </button>
+      <button onClick={() => console.log(waveform)}>print wave</button>
+      {/* </select> */}
       <div ref={pianoElem}></div>
     </div>
   );
