@@ -20,7 +20,7 @@ export function Navbar() {
             className="nav-link"
             to="/midiKeyboard"
           >
-            MidiKeyboard
+            Playa Piano
           </NavLink>
         </li>
         <li>
@@ -29,7 +29,7 @@ export function Navbar() {
             className="nav-link"
             to="/drumKit"
           >
-            DrumKit
+            Smash Kit
           </NavLink>
         </li>
         <li>

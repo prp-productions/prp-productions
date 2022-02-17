@@ -11,8 +11,6 @@ const audioManager = new AudioManager();
 export const Piano = () => {
   const [waveform, setWaveform] = useState("square");
   const [range, setRange] = useState(["C1", "C7"]);
-  // const range = ["C1", "C4"];
-  // const range = ["C4", "C6"];
   let svg = null;
   const allNaturalNotes = getAllNaturalNotes(range);
   const whiteKeyWidth = 80;
@@ -23,13 +21,6 @@ export const Piano = () => {
   let ts2 = 0;
   const naturalNotesSharps = ["C", "D", "F", "G", "A"];
   const naturalNotesFlats = ["D", "E", "G", "A", "B"];
-
-  // const waveformOptions = [
-  //   { value: "sine", label: "Sine" },
-  //   { value: "triangle", label: "Triangle" },
-  //   { value: "sawtooth", label: "Sawtooth" },
-  //   { value: "square", label: "Square" },
-  // ];
 
   const handleChooseWaveform = (waveform) => {
     setWaveform(waveform);
@@ -233,28 +224,12 @@ export const Piano = () => {
     return key;
   }
 
-  // function createOctave(octaveNumber) {
-  //   //! WTF is octaveWidth?
-  //   console.log(octaveNumber);
-  //   const octaveWidth = 100;
-  //   const octave = utils.createSVGElement("g");
-  //   octave.classList.add("octave");
-
-  //   octave.setAttribute(
-  //     "transform",
-
-  //     `translate(${octaveNumber * octaveWidth}, 0)`
-  //   );
-  //   return octave;
-  // }
-
   function hideNotes() {
     const pianoKeys = pianoElem.current.querySelectorAll(".key");
     utils.removeClassFromNodeCollection(pianoKeys, "show");
   }
 
   function displayNotes(notes) {
-    // const pianoKeys = document.querySelectorAll(".key");
     const pianoKeys = pianoElem.current.querySelectorAll(".key");
     notes.forEach((noteName) => {
       pianoKeys.forEach((key) => {
@@ -277,8 +252,6 @@ export const Piano = () => {
     svg = createMainSvg();
     addWhiteKeys();
     addBlackKeys();
-    // createOctave();
-    // displayNotes();
     pianoElem.current.appendChild(svg);
   });
 

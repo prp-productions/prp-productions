@@ -28,6 +28,12 @@ body {
   border-radius: 10px;
 }
 
+.pad:hover {
+  cursor: grab;
+}
+.pad:active {
+  cursor: grabbing;
+}
 .pad img {
   width: 150px;
   pointer-events: none;
