@@ -1,12 +1,14 @@
 @import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
 
 body {
-  padding:80px;
+  padding: 80px;
   background-color: var(--main-dark);
   font-family: "Lato";
   h1 {
     font-size: 3rem;
     font-weight: bold;
+    color: var(--main-light);
+    font-variant: small-caps;
   }
 
   h2 {
@@ -24,4 +26,8 @@ body {
 
 .App {
   text-align: center;
+}
+
+.midi-tag {
+  color: white;
 }

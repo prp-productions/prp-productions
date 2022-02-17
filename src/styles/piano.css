@@ -70,4 +70,36 @@
   background-color: #f5f541;
 }
 
+.range-container {
+  padding: 5px;
+  justify-content: space-around 20px;
+}
 
+.range-button {
+  padding: 3px;
+  margin: 3px;
+}
+
+.waveform-button-container {
+  justify-content: right;
+}
+
+.waveform-button {
+  padding: 10px;
+  border-left: 5px solid var(--main-light);
+  border-bottom: 4px solid var(--main-light);
+  border-top: 2px solid black;
+  border-right: 2px solid black;
+  margin: 2px 10px 10px 10px;
+  background-color: rgb(184, 246, 184);
+  font-weight: bolder;
+  font-variant: small-caps;
+}
+
+.waveform-button:hover {
+  cursor: pointer;
+}
+
+/* .waveform-button:active {
+
+} */

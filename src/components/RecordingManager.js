@@ -14,7 +14,7 @@ export const RecordingManager = ({ audioManager }) => {
 
   const handlePlayButton = () => {
     if (isRecording) {
-      console.log("ERROR currently recording");
+      alert("Please stop recording before playing");
     } else {
       console.log("recordingArray", recordingArray);
       recordingArray.forEach((midiNote, index) => {
