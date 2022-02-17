@@ -11,8 +11,6 @@ const audioManager = new AudioManager();
 export const Piano = () => {
   const [waveform, setWaveform] = useState("square");
   const [range, setRange] = useState(["C1", "C7"]);
-  // const range = ["C1", "C4"];
-  // const range = ["C4", "C6"];
   let svg = null;
   const allNaturalNotes = getAllNaturalNotes(range);
   const whiteKeyWidth = 80;
@@ -23,13 +21,6 @@ export const Piano = () => {
   let ts2 = 0;
   const naturalNotesSharps = ["C", "D", "F", "G", "A"];
   const naturalNotesFlats = ["D", "E", "G", "A", "B"];
-
-  // const waveformOptions = [
-  //   { value: "sine", label: "Sine" },
-  //   { value: "triangle", label: "Triangle" },
-  //   { value: "sawtooth", label: "Sawtooth" },
-  //   { value: "square", label: "Square" },
-  // ];
 
   const handleChooseWaveform = (waveform) => {
     setWaveform(waveform);
@@ -233,28 +224,12 @@ export const Piano = () => {
     return key;
   }
 
-  // function createOctave(octaveNumber) {
-  //   //! WTF is octaveWidth?
-  //   console.log(octaveNumber);
-  //   const octaveWidth = 100;
-  //   const octave = utils.createSVGElement("g");
-  //   octave.classList.add("octave");
-
-  //   octave.setAttribute(
-  //     "transform",
-
-  //     `translate(${octaveNumber * octaveWidth}, 0)`
-  //   );
-  //   return octave;
-  // }
-
   function hideNotes() {
     const pianoKeys = pianoElem.current.querySelectorAll(".key");
     utils.removeClassFromNodeCollection(pianoKeys, "show");
   }
 
   function displayNotes(notes) {
-    // const pianoKeys = document.querySelectorAll(".key");
     const pianoKeys = pianoElem.current.querySelectorAll(".key");
     notes.forEach((noteName) => {
       pianoKeys.forEach((key) => {
@@ -277,8 +252,6 @@ export const Piano = () => {
     svg = createMainSvg();
     addWhiteKeys();
     addBlackKeys();
-    // createOctave();
-    // displayNotes();
     pianoElem.current.appendChild(svg);
   });
 
@@ -288,7 +261,6 @@ export const Piano = () => {
 
   return (
     <div className="component_piano">
-      <h1>Piano</h1>
       <MidiKeyboard
         displayNotes={displayNotes}
         hideNotes={hideNotes}
@@ -296,41 +268,49 @@ export const Piano = () => {
       />
       <RecordingManager audioManager={audioManager} />
 
-      <button onClick={() => setRange(["C1", "C4"])}>C1 - C4</button>
-      <button onClick={() => setRange(["C4", "C7"])}>C4 - C7</button>
-      <button onClick={() => setRange(["C1", "C7"])}>C1 - C7</button>
-
-      <button
-        className="dropdown-item"
-        value="sine"
-        onClick={() => handleChooseWaveform("sine")}
-      >
-        sine
-      </button>
-      <button
-        className="dropdown-item"
-        value="square"
-        onClick={() => handleChooseWaveform("square")}
-      >
-        square
-      </button>
-      <button
-        className="dropdown-item"
-        value="triangle"
-        onClick={() => handleChooseWaveform("triangle")}
-      >
-        triangle
-      </button>
-      <button
-        className="dropdown-item"
-        value="sawtooth"
-        onClick={() => handleChooseWaveform("sawtooth")}
-      >
-        sawtooth
-      </button>
-      <button onClick={() => console.log(waveform)}>print wave</button>
-
+      <div className="range-container">
+        <button className="range-button" onClick={() => setRange(["C1", "C4"])}>
+          C1 - C4
+        </button>
+        <button className="range-button" onClick={() => setRange(["C4", "C7"])}>
+          C4 - C7
+        </button>
+        <button className="range-button" onClick={() => setRange(["C1", "C7"])}>
+          C1 - C7
+        </button>
+      </div>
+      <div className="waveform-button-container">
+        <button
+          className="waveform-button"
+          value="sine"
+          onClick={() => handleChooseWaveform("sine")}
+        >
+          sine
+        </button>
+        <button
+          className="waveform-button"
+          value="square"
+          onClick={() => handleChooseWaveform("square")}
+        >
+          square
+        </button>
+        <button
+          className="waveform-button"
+          value="triangle"
+          onClick={() => handleChooseWaveform("triangle")}
+        >
+          triangle
+        </button>
+        <button
+          className="waveform-button"
+          value="sawtooth"
+          onClick={() => handleChooseWaveform("sawtooth")}
+        >
+          sawtooth
+        </button>
+      </div>
       <div ref={pianoElem}></div>
+      <button onClick={() => console.log(waveform)}>print wave</button>
     </div>
   );
 };

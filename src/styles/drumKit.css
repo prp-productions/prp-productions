@@ -12,6 +12,10 @@ body {
   justify-content: center;
   height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
+  padding-bottom: 5%;
+  background-color: #2a2750;
+  padding-left: 1%;
+  padding-right: 1%;
 }
 
 .playing {
@@ -28,6 +32,12 @@ body {
   border-radius: 10px;
 }
 
+.pad:hover {
+  cursor: grab;
+}
+.pad:active {
+  cursor: grabbing;
+}
 .pad img {
   width: 150px;
   pointer-events: none;
