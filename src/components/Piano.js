@@ -33,7 +33,6 @@ export const Piano = () => {
 
   const handleChooseWaveform = (waveform) => {
     setWaveform(waveform);
-    console.log(waveform);
   };
 
   const createMainSvg = () => {
@@ -274,7 +273,6 @@ export const Piano = () => {
   }
 
   useEffect(() => {
-    new MidiKeyboard(displayNotes, hideNotes);
     pianoElem.current.innerHTML = "";
     svg = createMainSvg();
     addWhiteKeys();
@@ -288,42 +286,50 @@ export const Piano = () => {
     audioManager.noteOn("C");
   };
 
-  console.log(waveform);
   return (
     <div className="component_piano">
       <h1>Piano</h1>
+      <MidiKeyboard
+        displayNotes={displayNotes}
+        hideNotes={hideNotes}
+        audioManager={audioManager}
+      />
       <RecordingManager audioManager={audioManager} />
 
       <button onClick={() => setRange(["C1", "C4"])}>C1 - C4</button>
       <button onClick={() => setRange(["C4", "C7"])}>C4 - C7</button>
   <button onClick={() => setRange(["C1", "C7"])}>C1 - C7</button>
 
+      <button
+        className="dropdown-item"
+        value="sine"
+        onClick={() => handleChooseWaveform("sine")}
+      >
+        sine
+      </button>
+      <button
+        className="dropdown-item"
+        value="square"
+        onClick={() => handleChooseWaveform("square")}
+      >
+        square
+      </button>
+      <button
+        className="dropdown-item"
+        value="triangle"
+        onClick={() => handleChooseWaveform("triangle")}
+      >
+        triangle
+      </button>
+      <button
+        className="dropdown-item"
+        value="sawtooth"
+        onClick={() => handleChooseWaveform("sawtooth")}
+      >
+        sawtooth
+      </button>
+      <button onClick={() => console.log(waveform)}>print wave</button>
 
-      {/* WaveForm:
-      <select className="dropdown-menu" id="waveforms">
-        <option
-          className="dropdown-item"
-          value="sine"
-          onChange={() => handleChooseWaveform("sine")}
-          on
-        >
-          sine
-        </option>
-        <option
-          className="dropdown-item"
-          value="square"
-          onChange={() => handleChooseWaveform(this.option.value)}
-        >
-          triangle
-        </option>
-        <option
-          className="dropdown-item"
-          value="triangle"
-          onChange={() => handleChooseWaveform(this.option.value)}
-        >
-          square
-        </option>
-      </select> */}
       <div ref={pianoElem}></div>
     </div>
   );
