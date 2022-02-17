@@ -9,9 +9,11 @@ import "../styles/piano.css";
 const audioManager = new AudioManager();
 
 export const Piano = () => {
-  const [waveform, setWaveform] = useState("sine");
+  const [waveform, setWaveform] = useState("square");
+  const [range, setRange] = useState(["C1", "C7"]);
+  // const range = ["C1", "C4"];
+  // const range = ["C4", "C6"];
   let svg = null;
-  const range = ["C2", "C7"];
   const allNaturalNotes = getAllNaturalNotes(range);
   const whiteKeyWidth = 80;
   const pianoHeight = 400;
@@ -294,6 +296,10 @@ export const Piano = () => {
       />
       <RecordingManager audioManager={audioManager} />
 
+      <button onClick={() => setRange(["C1", "C4"])}>C1 - C4</button>
+      <button onClick={() => setRange(["C4", "C7"])}>C4 - C7</button>
+  <button onClick={() => setRange(["C1", "C7"])}>C1 - C7</button>
+
       <button
         className="dropdown-item"
         value="sine"
@@ -323,7 +329,7 @@ export const Piano = () => {
         sawtooth
       </button>
       <button onClick={() => console.log(waveform)}>print wave</button>
-      {/* </select> */}
+
       <div ref={pianoElem}></div>
     </div>
   );

@@ -28,21 +28,22 @@ export class AudioManager {
       const velocityGain = this.ctx.createGain();
       // const selectElement = document.querySelector("#waveform option:checked"); // TODO: put into settings manager
 
-      const osc = this.ctx.createOscillator();
-      osc.type = "sine"; //TODO: create pulldown
-      osc.frequency.value = this.midiToFrequency(note);
-      velocityGain.gain.value = velocityGainAmount;
+
+    const osc = this.ctx.createOscillator();
+    osc.type = "square"; //TODO: create pulldown
+    osc.frequency.value = this.midiToFrequency(note);
+    velocityGain.gain.value = velocityGainAmount;
 
       osc.connect(oscGain);
       osc.connect(velocityGain);
       velocityGain.connect(this.ctx.destination);
 
       osc.gain = oscGain;
-
       this.oscillators[note.toString()] = osc;
       osc.start();
       this.recordNote({ note, velocity });
     }
+
   }
 
   noteOff(note) {

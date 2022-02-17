@@ -1,3 +1,11 @@
+
+recordArray -> local storage.  
+    -> loadArray into musicplayer
+    -> show as button play Array on button click
+
+recordArray[c, d, e, f]
+
+
 Css styles 
     - 3 styles?
     - buttons
@@ -5,7 +13,8 @@ Css styles
 Documentation
 PowerPoint Presentation
     -mockups unfinished features
-local storage.  
+
+
 waveform button on piano
 Recording Manager Aufnehmen Funktionalitaet einbauen
 Musikplayer kann .prp dateien abspielen.
