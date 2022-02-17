@@ -50,6 +50,15 @@ export const RecordingManager = ({ audioManager }) => {
     }
   };
 
+  const handleClearButton = () => {
+    clearRecordingData();
+  };
+
+  const clearRecordingData = () => {
+    localStorage.removeItem("recordingArray");
+    setRecordingArray([]);
+  };
+
   audioManager.injectRecordNote(recordMidiNote);
 
   return (
@@ -62,6 +71,9 @@ export const RecordingManager = ({ audioManager }) => {
       </button>
       <button className="playButton" onClick={handlePlayButton}>
         Play
+      </button>
+      <button className="clearButton" onClick={handleClearButton}>
+        Clear
       </button>
 
       <div className="recordedNotes">
