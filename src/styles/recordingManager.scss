@@ -5,7 +5,7 @@
     border: none;
     margin: 6%;
     border-radius: 4px;
-    background: red;
+    background: red !important;
     box-shadow: 3px 3px 6px #d1d1d1, -3px -3px 6px #f5f5f5;
     transition: 1s;
   }
@@ -16,10 +16,29 @@
     background-color: var(--main-link);
     margin: 10px;
   }
-  button.recording:hover {
-    box-shadow: inset 4px 4px 10px #5b5b5b, inset -4px -4px 2px #ffffff;
-    color: var(--main-link);
-    background-color: var(--main-light-2);
+
+  // button.recording:hover {
+  //   box-shadow: inset 4px 4px 10px #5b5b5b, inset -4px -4px 2px #ffffff;
+  //   color: var(--main-link);
+  //   background-color: var(--main-light-2);
+  //   outline: none;
+  // }
+
+  button.recordButton {
+    width: 70px;
+    height: 30px;
+    border: none;
+    margin: 2%;
+    background-color: #ffffff;
+    border-radius: 4px;
+    box-shadow: 3px 3px 6px #d1d1d1, -3px -3px 6px #f5f5f5;
+    transition: 1s;
+  }
+
+  button.recordButton:hover {
+    box-shadow: inset 4px 4px 10px #ffffff, inset -4px -4px 2px --shadow-dark-2;
+    color: black;
+    background-color: red;
     outline: none;
   }
 
@@ -27,7 +46,7 @@
     width: 70px;
     height: 30px;
     border: none;
-    margin: 6%;
+    margin: 2%;
     border-radius: 4px;
     background: #e3e3e3;
     box-shadow: 3px 3px 6px #d1d1d1, -3px -3px 6px #f5f5f5;
@@ -38,6 +57,23 @@
     box-shadow: inset 4px 4px 10px #5b5b5b, inset -4px -4px 2px #ffffff;
     color: var(--main-link);
     background-color: var(--main-light-2);
+    outline: none;
+  }
+
+  button.clearButton {
+    width: 70px;
+    height: 30px;
+    border: none;
+    margin: 2%;
+    border-radius: 4px;
+    background: #e3e3e3;
+    box-shadow: 3px 3px 6px #d1d1d1, -3px -3px 6px #f5f5f5;
+    transition: 500ms;
+  }
+
+  button.clearButton:hover {
+    box-shadow: inset 4px 4px 10px #5b5b5b, inset -4px -4px 2px #0d9aec;
+    background-color: rgb(24, 163, 243);
     outline: none;
   }
 }
