@@ -5,12 +5,13 @@
   top: 0;
   right: 0;
   left: 0;
+  background-color: black;
 }
 
 .nav li {
   padding: 5px;
   margin: 10px;
-} 
+}
 
 @media only screen and (max-width: 300px) {
   .nav li {
