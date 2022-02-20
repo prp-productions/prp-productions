@@ -10,6 +10,10 @@ const audioManager = new AudioManager();
 
 export const Piano = () => {
   const [waveform, setWaveform] = useState("square");
+  // current and optionIndex are for button styling purposes:
+  const [current, setCurrent] = useState(1);
+  const [optionIndex, setOptionIndex] = useState();
+
   const [range, setRange] = useState(["C1", "C7"]);
   let svg = null;
   const allNaturalNotes = getAllNaturalNotes(range);
@@ -24,6 +28,11 @@ export const Piano = () => {
 
   const handleChooseWaveform = (waveform) => {
     setWaveform(waveform);
+  };
+  const handleRange = (number, rangeValue) => {
+    setOptionIndex(number);
+    setCurrent(optionIndex);
+    setRange(rangeValue);
   };
 
   const createMainSvg = () => {
@@ -269,15 +278,28 @@ export const Piano = () => {
       <RecordingManager audioManager={audioManager} />
 
       <div className="range-container">
-        <button className="range-button" onClick={() => setRange(["C1", "C4"])}>
-          C1 - C4
-        </button>
-        <button className="range-button" onClick={() => setRange(["C4", "C7"])}>
-          C4 - C7
-        </button>
-        <button className="range-button" onClick={() => setRange(["C1", "C7"])}>
-          C1 - C7
-        </button>
+        <div className="bar bar-grey">
+          <div className="option" onClick={() => handleRange(1, ["C1", "C4"])}>
+            c1-c4
+          </div>
+          <div className="option" onClick={() => handleRange(2, ["C4", "C7"])}>
+            c4-c7
+          </div>
+          <div className="option" onClick={() => handleRange(3, ["C1", "C7"])}>
+            c1-c7
+          </div>
+        </div>
+        <div
+          className={`bar-outer${optionIndex < current ? " right" : ""}${
+            optionIndex > current ? " left" : ""
+          } bar-outer pos${optionIndex}`}
+        >
+          <div className="bar bar-purple">
+            <div className="option selected">C1-C4</div>
+            <div className="option selected">C4-C7</div>
+            <div className="option selected">C1-C7</div>
+          </div>
+        </div>
       </div>
       <div className="waveform-button-container">
         <button
