@@ -69,10 +69,17 @@
 .connected_icon2 img {
   background-color: #f5f541;
 }
-
+.all-button-container {
+  display: inline-block;
+}
 .range-container {
   align-items: center;
-  background: #eeedef;
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(110, 208, 149),
+    rgb(116, 116, 235)
+  );
+  margin: 0 0 10px 0;
   display: flex;
   height: 20px;
   justify-content: center;
@@ -93,8 +100,9 @@
   font-weight: bold;
 }
 .bar-purple {
-  background: #6000ea;
+  background: #474aa7;
   color: white;
+  border: 1px solid green;
 
   clip-path: polygon(
     360px 0,
@@ -260,7 +268,7 @@
 }
 
 .waveform-button-container {
-  justify-content: right;
+  margin: 0 0 5px 0;
 }
 
 .waveform-button {

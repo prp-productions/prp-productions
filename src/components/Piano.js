@@ -14,7 +14,7 @@ export const Piano = () => {
   const [current, setCurrent] = useState(1);
   const [optionIndex, setOptionIndex] = useState();
 
-  const [range, setRange] = useState(["C1", "C7"]);
+  const [range, setRange] = useState(["C1", "C4"]);
   let svg = null;
   const allNaturalNotes = getAllNaturalNotes(range);
   const whiteKeyWidth = 80;
@@ -277,59 +277,70 @@ export const Piano = () => {
       />
       <RecordingManager audioManager={audioManager} />
 
-      <div className="range-container">
-        <div className="bar bar-grey">
-          <div className="option" onClick={() => handleRange(1, ["C1", "C4"])}>
-            c1-c4
+      <div className="all-button-container">
+        <div className="range-container">
+          <div className="bar bar-grey">
+            <div
+              className="option"
+              onClick={() => handleRange(1, ["C1", "C4"])}
+            >
+              c1-c4
+            </div>
+            <div
+              className="option"
+              onClick={() => handleRange(2, ["C4", "C7"])}
+            >
+              c4-c7
+            </div>
+            <div
+              className="option"
+              onClick={() => handleRange(3, ["C1", "C7"])}
+            >
+              c1-c7
+            </div>
           </div>
-          <div className="option" onClick={() => handleRange(2, ["C4", "C7"])}>
-            c4-c7
-          </div>
-          <div className="option" onClick={() => handleRange(3, ["C1", "C7"])}>
-            c1-c7
+          <div
+            className={`bar-outer${optionIndex < current ? " right" : ""}${
+              optionIndex > current ? " left" : ""
+            } bar-outer pos${optionIndex}`}
+          >
+            <div className="bar bar-purple">
+              <div className="option selected">C1-C4</div>
+              <div className="option selected">C4-C7</div>
+              <div className="option selected">C1-C7</div>
+            </div>
           </div>
         </div>
-        <div
-          className={`bar-outer${optionIndex < current ? " right" : ""}${
-            optionIndex > current ? " left" : ""
-          } bar-outer pos${optionIndex}`}
-        >
-          <div className="bar bar-purple">
-            <div className="option selected">C1-C4</div>
-            <div className="option selected">C4-C7</div>
-            <div className="option selected">C1-C7</div>
-          </div>
+        <div className="waveform-button-container">
+          <button
+            className="waveform-button"
+            value="sine"
+            onClick={() => handleChooseWaveform("sine")}
+          >
+            sine
+          </button>
+          <button
+            className="waveform-button"
+            value="square"
+            onClick={() => handleChooseWaveform("square")}
+          >
+            square
+          </button>
+          <button
+            className="waveform-button"
+            value="triangle"
+            onClick={() => handleChooseWaveform("triangle")}
+          >
+            triangle
+          </button>
+          <button
+            className="waveform-button"
+            value="sawtooth"
+            onClick={() => handleChooseWaveform("sawtooth")}
+          >
+            sawtooth
+          </button>
         </div>
-      </div>
-      <div className="waveform-button-container">
-        <button
-          className="waveform-button"
-          value="sine"
-          onClick={() => handleChooseWaveform("sine")}
-        >
-          sine
-        </button>
-        <button
-          className="waveform-button"
-          value="square"
-          onClick={() => handleChooseWaveform("square")}
-        >
-          square
-        </button>
-        <button
-          className="waveform-button"
-          value="triangle"
-          onClick={() => handleChooseWaveform("triangle")}
-        >
-          triangle
-        </button>
-        <button
-          className="waveform-button"
-          value="sawtooth"
-          onClick={() => handleChooseWaveform("sawtooth")}
-        >
-          sawtooth
-        </button>
       </div>
       <div ref={pianoElem}></div>
       <button onClick={() => console.log(waveform)}>print wave</button>

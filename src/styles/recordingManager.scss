@@ -1,8 +1,10 @@
 .component_recordingManager {
+  //background-color: rgb(64, 0, 255);
+
   button.recording {
     width: 70px;
     height: 30px;
-    border: 2px solid red;
+    border: 2px solid #ff0000;
     margin: 6%;
     border-radius: 4px;
     background: red !important;
@@ -12,9 +14,10 @@
   }
   .recordedNotes {
     display: block;
+    font-size: x-small;
     color: white;
     border: solid 1px var(--main-light-2);
-    background-color: var(--main-link);
+    background-color: black;
     margin: 10px;
   }
 
@@ -30,10 +33,10 @@
     height: 30px;
 
     margin: 2%;
-    background-color: #ffffff;
+    background-color: #685f5f;
     border-radius: 4px;
 
-    transition: 1s;
+    transition: 0.5s;
   }
 
   button.recordButton:hover {
@@ -49,9 +52,9 @@
     font-variant: small-caps;
     margin: 2%;
     border-radius: 4px;
-    background: #e3e3e3;
+    background: #685f5f;
 
-    transition: 1s;
+    transition: 0.5s;
   }
 
   button.playButton:hover {
@@ -68,7 +71,7 @@
     font-variant: small-caps;
     margin: 2%;
     border-radius: 4px;
-    background: #e3e3e3;
+    background: #685f5f;
 
     transition: 500ms;
   }
