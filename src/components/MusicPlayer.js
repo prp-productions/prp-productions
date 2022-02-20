@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 
 export const MusicPlayer = () => {
-  const [songs, setSongs] = useState(["hey", "prp", "beat01"]);
+  const [songs, setSongs] = useState(["Hey", "PRP", "Beat01"]);
   const [currentSongIndex, setCurrentSongIndex] = useState(1);
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -64,6 +64,7 @@ export const MusicPlayer = () => {
         id="music-container"
       >
         <div className="music-info">
+        <h4 id="title"> Current Song: {songs[currentSongIndex]}</h4>
           <div className="progress-container" id="progress-container">
             <div className="progress" id="progress"></div>
           </div>
@@ -93,8 +94,6 @@ export const MusicPlayer = () => {
           <button id="next" onClick={handleNext} className="action-btn">
             <i className="fas fa-forward"></i>
           </button>
-
-          <h4 id="title"> Current Song: {songs[currentSongIndex]}</h4>
         </div>
       </div>
     </div>
