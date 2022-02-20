@@ -1,19 +1,23 @@
 .component_recordingManager {
+  //background-color: rgb(64, 0, 255);
+
   button.recording {
     width: 70px;
     height: 30px;
-    border: none;
+    border: 2px solid #ff0000;
     margin: 6%;
     border-radius: 4px;
     background: red !important;
-    box-shadow: 3px 3px 6px #d1d1d1, -3px -3px 6px #f5f5f5;
-    transition: 1s;
+    font-weight: bold;
+    box-shadow: 1px 1px 1px #ee5858, -1px -1px 1px #f96363;
+    //transition: 0.1s;
   }
   .recordedNotes {
     display: block;
+    font-size: x-small;
     color: white;
     border: solid 1px var(--main-light-2);
-    background-color: var(--main-link);
+    background-color: black;
     margin: 10px;
   }
 
@@ -27,12 +31,12 @@
   button.recordButton {
     width: 70px;
     height: 30px;
-    border: none;
+
     margin: 2%;
-    background-color: #ffffff;
+    background-color: #685f5f;
     border-radius: 4px;
-    box-shadow: 3px 3px 6px #d1d1d1, -3px -3px 6px #f5f5f5;
-    transition: 1s;
+
+    transition: 0.5s;
   }
 
   button.recordButton:hover {
@@ -45,12 +49,12 @@
   button.playButton {
     width: 70px;
     height: 30px;
-    border: none;
+    font-variant: small-caps;
     margin: 2%;
     border-radius: 4px;
-    background: #e3e3e3;
-    box-shadow: 3px 3px 6px #d1d1d1, -3px -3px 6px #f5f5f5;
-    transition: 1s;
+    background: #685f5f;
+
+    transition: 0.5s;
   }
 
   button.playButton:hover {
@@ -63,11 +67,12 @@
   button.clearButton {
     width: 70px;
     height: 30px;
-    border: none;
+
+    font-variant: small-caps;
     margin: 2%;
     border-radius: 4px;
-    background: #e3e3e3;
-    box-shadow: 3px 3px 6px #d1d1d1, -3px -3px 6px #f5f5f5;
+    background: #685f5f;
+
     transition: 500ms;
   }
 
