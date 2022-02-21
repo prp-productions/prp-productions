@@ -1,0 +1,165 @@
+@import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
+body {
+  padding-top: 120px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: var(--main-dark);
+  font-family: "Lato";
+}
+
+body h1 {
+  font-size: 6rem;
+  font-weight: bold;
+  color: var(--main-light);
+  font-variant: small-caps;
+}
+
+body h2 {
+  font-size: 2rem;
+}
+
+body h3 {
+  font-size: 1.5rem;
+}
+
+body h4 {
+  font-size: 1rem;
+}
+
+.tagline-container {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  padding: 2%;
+}
+
+.title-word {
+  -webkit-animation: color-animation 4s linear infinite;
+          animation: color-animation 4s linear infinite;
+}
+
+.title-word-1 {
+  --color-1: #df8453;
+  --color-2: #34b5ed;
+  --color-3: #e4a9a8;
+}
+
+.title-word-2 {
+  --color-1: #dbad4a;
+  --color-2: #accfcb;
+  --color-3: #d0a0e8;
+}
+
+.title-word-3 {
+  --color-1: #accfcb;
+  --color-2: #e4a9a8;
+  --color-3: #7cd2a2;
+}
+
+.title-word-4 {
+  --color-1: #3d8dae;
+  --color-2: #df8453;
+  --color-3: #e4a9a8;
+}
+
+@-webkit-keyframes color-animation {
+  0% {
+    color: var(--color-1);
+  }
+  32% {
+    color: var(--color-1);
+  }
+  33% {
+    color: var(--color-2);
+  }
+  65% {
+    color: var(--color-2);
+  }
+  66% {
+    color: var(--color-3);
+  }
+  99% {
+    color: var(--color-3);
+  }
+  100% {
+    color: var(--color-1);
+  }
+}
+
+@keyframes color-animation {
+  0% {
+    color: var(--color-1);
+  }
+  32% {
+    color: var(--color-1);
+  }
+  33% {
+    color: var(--color-2);
+  }
+  65% {
+    color: var(--color-2);
+  }
+  66% {
+    color: var(--color-3);
+  }
+  99% {
+    color: var(--color-3);
+  }
+  100% {
+    color: var(--color-1);
+  }
+}
+
+.App {
+  text-align: center;
+}
+
+.midi-tag {
+  color: white;
+}
+
+.description {
+  padding: 15% 10% 5% 10%;
+  text-shadow: 0px 0px 0px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.swing-top-fwd {
+  -webkit-animation: swing-top-fwd 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both;
+  animation: swing-top-fwd 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both;
+}
+
+@-webkit-keyframes swing-top-fwd {
+  0% {
+    -webkit-transform: rotateX(0);
+    transform: rotateX(0);
+    -webkit-transform-origin: top;
+    transform-origin: top;
+  }
+  100% {
+    -webkit-transform: rotateX(180deg);
+    transform: rotateX(180deg);
+    -webkit-transform-origin: top;
+    transform-origin: top;
+  }
+}
+
+@keyframes swing-top-fwd {
+  0% {
+    -webkit-transform: rotateX(0);
+    transform: rotateX(0);
+    -webkit-transform-origin: top;
+    transform-origin: top;
+  }
+  100% {
+    -webkit-transform: rotateX(180deg);
+    transform: rotateX(180deg);
+    -webkit-transform-origin: top;
+    transform-origin: top;
+  }
+}
+/*# sourceMappingURL=homepage.css.map */

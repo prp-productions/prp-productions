@@ -13,7 +13,6 @@ function App() {
         <Navbar />
         <Routes>
           <Route exact path="/" element={<PageHome />} />
-
           <Route path="/midiKeyboard" element={<PageMidiKeyboard />} />
           <Route path="/drumKit" element={<PageDrumKit />} />
           <Route path="/musicPlayer" element={<PageMusicPlayer />} />

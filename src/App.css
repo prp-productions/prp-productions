@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
+body {
+  padding-top: 80px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: var(--main-dark);
+  font-family: "Lato";
+}
+
+body h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--main-light);
+  font-variant: small-caps;
+}
+
+body h2 {
+  font-size: 2rem;
+}
+
+body h3 {
+  font-size: 1.5rem;
+}
+
+body h4 {
+  font-size: 1rem;
+}
+
+.App {
+  text-align: center;
+}
+
+.midi-tag {
+  color: white;
+}
+/*# sourceMappingURL=App.css.map */

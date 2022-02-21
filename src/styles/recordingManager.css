@@ -1,0 +1,76 @@
+.component_recordingManager button.recording {
+  width: 70px;
+  height: 30px;
+  border: 2px solid #ff0000;
+  margin: 6%;
+  border-radius: 4px;
+  background: red !important;
+  font-weight: bold;
+  -webkit-box-shadow: 1px 1px 1px #ee5858, -1px -1px 1px #f96363;
+          box-shadow: 1px 1px 1px #ee5858, -1px -1px 1px #f96363;
+}
+
+.component_recordingManager .recordedNotes {
+  display: block;
+  font-size: x-small;
+  color: white;
+  border: solid 1px var(--main-light-2);
+  background-color: black;
+  margin: 10px;
+}
+
+.component_recordingManager button.recordButton {
+  width: 70px;
+  height: 30px;
+  margin: 2%;
+  background-color: #685f5f;
+  border-radius: 4px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.component_recordingManager button.recordButton:hover {
+  -webkit-box-shadow: inset 4px 4px 10px #ffffff, inset -4px -4px 2px --shadow-dark-2;
+          box-shadow: inset 4px 4px 10px #ffffff, inset -4px -4px 2px --shadow-dark-2;
+  color: black;
+  background-color: red;
+  outline: none;
+}
+
+.component_recordingManager button.playButton {
+  width: 70px;
+  height: 30px;
+  font-variant: small-caps;
+  margin: 2%;
+  border-radius: 4px;
+  background: #685f5f;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.component_recordingManager button.playButton:hover {
+  -webkit-box-shadow: inset 4px 4px 10px #5b5b5b, inset -4px -4px 2px #ffffff;
+          box-shadow: inset 4px 4px 10px #5b5b5b, inset -4px -4px 2px #ffffff;
+  color: var(--main-link);
+  background-color: var(--main-light-2);
+  outline: none;
+}
+
+.component_recordingManager button.clearButton {
+  width: 70px;
+  height: 30px;
+  font-variant: small-caps;
+  margin: 2%;
+  border-radius: 4px;
+  background: #685f5f;
+  -webkit-transition: 500ms;
+  transition: 500ms;
+}
+
+.component_recordingManager button.clearButton:hover {
+  -webkit-box-shadow: inset 4px 4px 10px #5b5b5b, inset -4px -4px 2px #0d9aec;
+          box-shadow: inset 4px 4px 10px #5b5b5b, inset -4px -4px 2px #0d9aec;
+  background-color: #18a3f3;
+  outline: none;
+}
+/*# sourceMappingURL=recordingManager.css.map */

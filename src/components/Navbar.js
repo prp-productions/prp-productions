@@ -1,5 +1,10 @@
 import { NavLink } from "react-router-dom";
 import "../styles/navbar.css";
+import { VscHome } from 'react-icons/vsc';
+import { CgPiano } from 'react-icons/cg'
+import { GiDrum } from 'react-icons/gi'
+import { AiOutlinePlayCircle } from 'react-icons/ai'
+
 
 export function Navbar() {
   return (
@@ -11,7 +16,7 @@ export function Navbar() {
             className="nav-link"
             to="/"
           >
-            PRP-Productions
+          <VscHome/> 
           </NavLink>
         </li>
         <li>
@@ -20,7 +25,7 @@ export function Navbar() {
             className="nav-link"
             to="/midiKeyboard"
           >
-            Playa Piano
+            <CgPiano/>
           </NavLink>
         </li>
         <li>
@@ -29,7 +34,7 @@ export function Navbar() {
             className="nav-link"
             to="/drumKit"
           >
-            Smash Kit
+            <GiDrum/>
           </NavLink>
         </li>
         <li>
@@ -38,7 +43,7 @@ export function Navbar() {
             className="nav-link"
             to="/musicPlayer"
           >
-            MusicPlayer
+            <AiOutlinePlayCircle/>
           </NavLink>
         </li>
       </ul>
