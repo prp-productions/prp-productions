@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import "../styles/navbar.css";
+import "../styles/navbar.scss";
 import { VscHome } from 'react-icons/vsc';
 import { CgPiano } from 'react-icons/cg'
 import { GiDrum } from 'react-icons/gi'
@@ -16,7 +16,9 @@ export function Navbar() {
             className="nav-link"
             to="/"
           >
+
           <VscHome/> 
+
           </NavLink>
         </li>
         <li>
