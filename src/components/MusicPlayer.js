@@ -1,15 +1,27 @@
 import { useState, useRef, useEffect } from "react";
+import { AudioManager } from "../classes/AudioManager.js";
 
 export const MusicPlayer = () => {
   const [songs, setSongs] = useState(["Hey", "PRP", "Beat01"]);
   const [currentSongIndex, setCurrentSongIndex] = useState(1);
   const [isPlaying, setIsPlaying] = useState(false);
 
+  const [recordingArray, setRecordingArray] = useState([]);
+
   useEffect(() => {
     audioElem.current.addEventListener("ended", () => {
-      setIsPlaying(false)
+      setIsPlaying(false);
     });
+    const rawRecordingArray = localStorage.getItem("recordingArray");
+    const _recordingArray =
+      rawRecordingArray === null ? [] : JSON.parse(rawRecordingArray);
+    setRecordingArray(_recordingArray);
+    console.log(_recordingArray);
   }, []);
+
+  const handlePlayRecording = () => {
+    console.log("nothing");
+  };
 
   const handleNext = () => {
     let _currentSongIndex = currentSongIndex + 1;
@@ -17,7 +29,7 @@ export const MusicPlayer = () => {
       _currentSongIndex = 0;
     }
     setCurrentSongIndex(_currentSongIndex);
-    setIsPlaying(false)
+    setIsPlaying(false);
   };
 
   const handlePrev = () => {
@@ -26,7 +38,7 @@ export const MusicPlayer = () => {
       _currentSongIndex = songs.length - 1;
     }
     setCurrentSongIndex(_currentSongIndex);
-    setIsPlaying(false)
+    setIsPlaying(false);
   };
 
   const handlePlay = () => {
@@ -64,7 +76,7 @@ export const MusicPlayer = () => {
         id="music-container"
       >
         <div className="music-info">
-        <h4 id="title"> Current Song: {songs[currentSongIndex]}</h4>
+          <h4 id="title"> Current Song: {songs[currentSongIndex]}</h4>
           <div className="progress-container" id="progress-container">
             <div className="progress" id="progress"></div>
           </div>
@@ -96,6 +108,10 @@ export const MusicPlayer = () => {
           </button>
         </div>
       </div>
+
+      {recordingArray.length > 0 && (
+        <button onClick={() => handlePlayRecording()}>Play Recording</button>
+      )}
     </div>
   );
 };
