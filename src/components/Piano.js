@@ -28,6 +28,7 @@ export const Piano = () => {
 
   const handleChooseWaveform = (waveform) => {
     setWaveform(waveform);
+    audioManager.setWaveform(waveform);
   };
   const handleRange = (number, rangeValue) => {
     setOptionIndex(number);
