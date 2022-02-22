@@ -70,7 +70,10 @@
   background-color: #f5f541;
 }
 .all-button-container {
-  display: inline-block;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-around;
 }
 .range-container {
   align-items: center;
@@ -268,7 +271,7 @@
 }
 
 .waveform-button-container {
-  margin: 0 0 5px 0;
+  margin: 5px 0 5px 0;
 }
 
 .waveform-button {
