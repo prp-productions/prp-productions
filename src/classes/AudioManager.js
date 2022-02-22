@@ -44,7 +44,7 @@ export class AudioManager {
       osc.gain = oscGain;
       this.oscillators[note.toString()] = osc;
       osc.start();
-      this.recordNote({ note, velocity });
+      this.recordNote && this.recordNote({ note, velocity });
     }
   }
 

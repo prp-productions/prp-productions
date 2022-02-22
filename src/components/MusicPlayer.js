@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import { AudioManager } from "../classes/AudioManager.js";
 
+const audioManager = new AudioManager();
+
 export const MusicPlayer = () => {
   const [songs, setSongs] = useState(["Hey", "PRP", "Beat01"]);
   const [currentSongIndex, setCurrentSongIndex] = useState(1);
@@ -18,10 +20,6 @@ export const MusicPlayer = () => {
     setRecordingArray(_recordingArray);
     console.log(_recordingArray);
   }, []);
-
-  const handlePlayRecording = () => {
-    console.log("nothing");
-  };
 
   const handleNext = () => {
     let _currentSongIndex = currentSongIndex + 1;
@@ -49,6 +47,16 @@ export const MusicPlayer = () => {
       audioElem.current.play();
       setIsPlaying(true);
     }
+  };
+
+  const handlePlayRecording = () => {
+    recordingArray.forEach((midiNote, index) => {
+      setTimeout(() => {
+        audioManager.noteOn(midiNote.note, midiNote.velocity);
+        audioManager.noteOffWithKeyPress(midiNote.note);
+      }, 400 * index);
+      console.log(midiNote); // abstand vom anfang der ersten Note bis zur naechsten Note (midiNote.playDuration + midiNote.waitDuration) * index)
+    });
   };
 
   const audioElem = useRef(null);
