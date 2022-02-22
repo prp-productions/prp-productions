@@ -17,9 +17,9 @@ export class AudioManager {
   }
 
   noteOn(note, velocity) {
-    console.log('aa', this.oscillators);
+    console.log("aa", this.oscillators);
     // if (!this.oscillators[note.toString()]) {
-    if (!this.noteIsPlaying ) {
+    if (!this.noteIsPlaying) {
       this.noteIsPlaying = !this.noteIsPlaying;
       console.log("noteOn");
       const oscGain = this.ctx.createGain();
@@ -28,11 +28,10 @@ export class AudioManager {
       const velocityGain = this.ctx.createGain();
       // const selectElement = document.querySelector("#waveform option:checked"); // TODO: put into settings manager
 
-
-    const osc = this.ctx.createOscillator();
-    osc.type = "square"; //TODO: create pulldown
-    osc.frequency.value = this.midiToFrequency(note);
-    velocityGain.gain.value = velocityGainAmount;
+      const osc = this.ctx.createOscillator();
+      osc.type = "sine"; //TODO: create pulldown
+      osc.frequency.value = this.midiToFrequency(note);
+      velocityGain.gain.value = velocityGainAmount;
 
       osc.connect(oscGain);
       osc.connect(velocityGain);
@@ -43,7 +42,6 @@ export class AudioManager {
       osc.start();
       this.recordNote({ note, velocity });
     }
-
   }
 
   noteOff(note) {
