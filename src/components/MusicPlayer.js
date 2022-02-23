@@ -107,19 +107,27 @@ export const MusicPlayer = () => {
             id="play"
             onClick={handlePlay}
             className="action-btn action-btn-big"
-          >
+          >Mp3  
             {!isPlaying && <i className="fas fa-play"></i>}
             {isPlaying && <i className="fas fa-pause"></i>}
           </button>
+          {recordingArray.length > 0 && (
+            <button id="play" onClick={() => handlePlayRecording()}
+            className="action-btn action-btn-big"
+            >Prp  
+              {!isPlaying && <i className="fas fa-play"></i>}
+            {isPlaying && <i className="fas fa-pause"></i>}
+            </button>
+          )}
           <button id="next" onClick={handleNext} className="action-btn">
             <i className="fas fa-forward"></i>
           </button>
         </div>
       </div>
 
-      {recordingArray.length > 0 && (
+      {/* {recordingArray.length > 0 && (
         <button onClick={() => handlePlayRecording()}>Play Recording</button>
-      )}
+      )} */}
     </div>
   );
 };
